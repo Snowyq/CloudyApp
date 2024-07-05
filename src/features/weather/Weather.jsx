@@ -1,11 +1,11 @@
-import { getWeather } from '../../services/apiWeather';
-import GeneralWeatherBlock from './weatherBlocks/GeneralWeatherBlock';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeather } from './weatherSlice';
 import { useEffect, useRef, useState } from 'react';
 import Grid from '../../ui/Grid';
 import WeatherHeader from './WeatherHeader';
 import WeatherBlock from './weatherBlocks/WeatherBlock';
+import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
+import NextDaysBlock from './weatherBlocks/NextDaysBlock';
 
 function Weather() {
   const dispatch = useDispatch();
@@ -14,15 +14,16 @@ function Weather() {
     dispatch(fetchWeather());
   }, []);
   const status = useSelector(state => state.weather.status);
+  const isData = useSelector(state => state.weather.isData);
   const isLoading = status === 'loading';
   if (isLoading) return <p>loading...</p>;
-
+  if (!isData) return;
   return (
     <div className='flex flex-col items-center px-5'>
       <WeatherHeader />
       <Grid className='w-full grid-flow-dense auto-rows-[150px] grid-cols-weather justify-center gap-3'>
-        <GeneralWeatherBlock />
-        <WeatherBlock />
+        <NextDaysBlock />
+        <FeelsLikeBlock />
         <WeatherBlock className='col-span-2' />
         <WeatherBlock />
         <WeatherBlock />

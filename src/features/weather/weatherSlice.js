@@ -24,6 +24,7 @@ const initialState = {
   weatherData: {},
   error: '',
   status: 'idle',
+  isData: false,
 };
 
 const weatherSlice = createSlice({
@@ -36,14 +37,15 @@ const weatherSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      .addCase(fetchWeather.pending, (state, action) => {
+      .addCase(fetchWeather.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
         state.weatherData = action.payload.weatherData;
         state.status = 'idle';
+        state.isData = true;
       })
-      .addCase(fetchWeather.rejected, (state, action) => {
+      .addCase(fetchWeather.rejected, state => {
         (state.status = 'error'),
           (state.error =
             'There was a problem getting your address. Make sure to fill this field');
@@ -53,6 +55,17 @@ const weatherSlice = createSlice({
 export default weatherSlice.reducer;
 
 export const { loadWeather } = weatherSlice.actions;
+
+export const getCurrentWeather = state => state.weather.weatherData.current;
+
+export const getTemperature = state => state.weather.weatherData.current.temp;
+export const getTodayPrediction = state => state.weather.weatherData.daily[0];
+export const getDailyPrediction = state => state.weather.weatherData.daily;
+
+export const getTodayPredictionTemp = state =>
+  state.weather.weatherData.daily[0].temp;
+export const getTodayPredictionFeelsLike = state =>
+  state.weather.weatherData.daily[0].feels_like;
 
 // const cartSlice = createSlice({
 //   name: 'cart',
