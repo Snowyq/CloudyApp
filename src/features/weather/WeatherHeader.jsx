@@ -1,6 +1,8 @@
 import { WiCloudy, WiThermometer } from 'react-icons/wi';
 import { useSelector } from 'react-redux';
 import { getCurrentWeather, getTodayPredictionTemp } from './weatherSlice';
+import Temperature from '../../ui/Temperature';
+import WeatherIcon from '../../ui/WeatherIcon';
 
 function WeatherHeader() {
   const currentWeather = useSelector(getCurrentWeather);
@@ -11,9 +13,6 @@ function WeatherHeader() {
     temp,
   } = currentWeather;
 
-  console.log(weather);
-  console.log(temp);
-
   return (
     <div className='flex items-center justify-center gap-10 py-10'>
       <div className='flex flex-col items-center gap-2'>
@@ -22,24 +21,20 @@ function WeatherHeader() {
         </div>
         <div className='relative flex items-center justify-center'>
           <WiThermometer className='mr-2 text-2xl text-neutral-400' />
-          <p className='text-4xl font-semibold'>{temp.toFixed(1)}</p>
-          <span className='ml-1 self-start text-2xl font-normal text-neutral-400'>
-            °C
-          </span>
+          <Temperature value={temp} size='4xl' font='semibold' />
         </div>
-        <p className='text-neutral-400'>
-          from{' '}
-          <span className='text-neutral-300'>
-            {tempPrediciton.min.toFixed(1)}°C
-          </span>{' '}
-          to{' '}
-          <span className='text-neutral-300'>
-            {tempPrediciton.max.toFixed(1)}°C
-          </span>
+        <p className='flex w-full items-center gap-1 text-neutral-400'>
+          <span>from</span>
+          <Temperature value={tempPrediciton.min} size='sm' />
+          <span>to</span>
+          <Temperature value={tempPrediciton.max} size='sm' />
         </p>
       </div>
       <div className='relative -mt-5 flex flex-col items-center justify-center'>
-        <WiCloudy className='m-0 h-[120px] w-[120px] p-0 text-neutral-300' />
+        <WeatherIcon
+          iconId={weather.icon}
+          className='m-0 h-[120px] w-[120px] p-0 text-neutral-300'
+        />
         <p className='absolute bottom-1 text-nowrap text-neutral-300'>
           {weather.description}
         </p>

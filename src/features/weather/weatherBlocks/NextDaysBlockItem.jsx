@@ -1,19 +1,20 @@
-function NextDaysBlockItem({ day }) {
-  console.log(day);
+import Temperature from '../../../ui/Temperature';
+import WeatherIcon from '../../../ui/WeatherIcon';
+
+function NextDaysBlockItem({ day, type }) {
 
   return (
-    <div className='flex flex-col items-center'>
+    <div
+      className={`flex-col items-center justify-between ${type === 'additional' ? 'hidden sm:flex' : 'flex'}`}
+    >
       <p>
         {new Date(day.dt * 1000).toLocaleDateString('pl-PL', {
           day: 'numeric',
           month: 'numeric',
         })}
       </p>
-      <img
-        src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-        alt=''
-      />
-      <p>{day.temp.day.toFixed(1)}</p>
+      <WeatherIcon iconId={day.weather[0].icon} className={'text-[50px]'} />
+      <Temperature value={day.temp.day} font='semibold' size='md' />
     </div>
   );
 }

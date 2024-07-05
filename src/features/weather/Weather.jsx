@@ -6,6 +6,7 @@ import WeatherHeader from './WeatherHeader';
 import WeatherBlock from './weatherBlocks/WeatherBlock';
 import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
 import NextDaysBlock from './weatherBlocks/NextDaysBlock';
+import PressureBlock from './weatherBlocks/PressureBlock';
 
 function Weather() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function Weather() {
       <Grid className='w-full grid-flow-dense auto-rows-[150px] grid-cols-weather justify-center gap-3'>
         <NextDaysBlock />
         <FeelsLikeBlock />
+        <PressureBlock />
         <WeatherBlock className='col-span-2' />
         <WeatherBlock />
         <WeatherBlock />
