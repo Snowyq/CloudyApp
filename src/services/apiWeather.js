@@ -6,7 +6,7 @@ const API_KEY = `&appid=${WEATHER_API_KEY}`;
 export async function getWeather(pos) {
   try {
     // const position = `?lat=${pos.lat}&lon=${pos.lon}`;
-    const position = `?lat=${50}&lon=${19}`;
+    const position = `?lat=${pos.lat}&lon=${pos.lon}`;
     const res = await fetch(`${API_URL}${position}&units=metric${API_KEY}`);
     const data = await res.json();
     console.log(data);

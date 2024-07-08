@@ -21,7 +21,7 @@ function Weather() {
   if (isLoading) return <p>loading...</p>;
   if (!isData) return;
   return (
-    <div className='flex flex-col items-center px-5'>
+    <div className='flex h-[calc(100svh-100px)] flex-col items-center overflow-scroll px-5'>
       <WeatherHeader />
       <Grid className='w-full grid-flow-dense auto-rows-[150px] grid-cols-weather justify-center gap-3'>
         <HourlyPredictionBlock />

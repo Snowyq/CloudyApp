@@ -1,16 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebar } from '../features/sidebar/sidebarSlice';
 import Button from './Button';
-import SearchLocation from './SearchLocation';
+import SearchLocation from '../features/search/SearchLocation';
 import Time from './Time';
+import { PiSidebar } from 'react-icons/pi';
+import ToggleSidebarBtn from '../features/sidebar/ToggleSidebarBtn';
 
 function Header() {
-  const dispatch = useDispatch();
   const showSidebar = useSelector(state => state.sidebar.showSidebar);
 
   return (
     <header className='relative flex h-[100px] items-center justify-between bg-inherit px-5'>
-      <Button onClick={() => dispatch(toggleSidebar())}>openSidebar</Button>
+      {showSidebar || <ToggleSidebarBtn />}
 
       <div className='translate absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform'>
         <SearchLocation />
