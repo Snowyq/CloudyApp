@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import WeatherBlock from './WeatherBlock';
 import { getDailyPrediction } from '../weatherSlice';
-import NextDaysBlockItem from './NextDaysBlockItem';
+import NextDaysBlockItem from './HourlyPredictionBlockItem.jsx';
 
 function NextDaysBlock() {
   const dailyPrediction = useSelector(getDailyPrediction);
