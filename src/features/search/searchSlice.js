@@ -6,12 +6,17 @@ const initialState = {
   error: '',
   query: '',
   results: null,
+  showResults: false,
 };
 
+let aborter;
 export const fetchResults = createAsyncThunk(
   'search/fetchResults',
   async function (query) {
-    const results = await SearchCityByName(query);
+    if (aborter) aborter.abort();
+    aborter = new AbortController();
+    const signal = aborter.signal;
+    const results = await SearchCityByName(query, signal);
 
     return { results, query };
   },
@@ -21,8 +26,11 @@ const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    toggleResults(state) {
-      state.showResults = !state.showResults;
+    hideResults(state) {
+      state.showResults = false;
+    },
+    showResults(state) {
+      state.showResults = true;
     },
     removeResults(state) {
       state.results = null;
@@ -36,6 +44,7 @@ const searchSlice = createSlice({
       .addCase(fetchResults.fulfilled, (state, action) => {
         state.results = action.payload.results;
         state.query = action.payload.query;
+        state.showResults = true;
         state.status = 'idle';
         state.isData = true;
       })
@@ -46,7 +55,7 @@ const searchSlice = createSlice({
       }),
 });
 
-export const { toggleResults,removeResults } = searchSlice.actions;
+export const { showResults, hideResults, removeResults } = searchSlice.actions;
 
 export default searchSlice.reducer;
 

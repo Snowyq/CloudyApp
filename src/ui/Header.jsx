@@ -1,9 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleSidebar } from '../features/sidebar/sidebarSlice';
-import Button from './Button';
+import { useSelector } from 'react-redux';
 import SearchLocation from '../features/search/SearchLocation';
 import Time from './Time';
-import { PiSidebar } from 'react-icons/pi';
 import ToggleSidebarBtn from '../features/sidebar/ToggleSidebarBtn';
 
 function Header() {

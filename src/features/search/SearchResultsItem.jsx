@@ -30,10 +30,15 @@ function SearchResultsItem({ result }) {
   return (
     <div
       className='mx-1 cursor-pointer rounded py-1 pl-4 text-lg text-neutral-200 hover:bg-neutral-800'
-      onClick={() => {
+      onMouseDown={() => {
         dispatch(
-          fetchWeather({ lon: result.center[0], lat: result.center[1] }),
+          fetchWeather({
+            lon: result.center[0],
+            lat: result.center[1],
+            place: result.place_name,
+          }),
         );
+        // dispatch(hideResults());
       }}
     >
       <span>{firstNamePart}</span>

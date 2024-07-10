@@ -1,9 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from '@reduxjs/toolkit';
 import { getWeather } from '../../services/apiWeather';
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
-  async function (position) {
+  async function ({ lon, lat, place }) {
+    const position = { lon, lat };
     // 1) We get the user's geolocation position
     // const positionObj = await getPosition();
     // const position = {
@@ -14,30 +19,25 @@ export const fetchWeather = createAsyncThunk(
     console.log(position);
     const weatherData = await getWeather(position);
     // 3) Then we return an object with the data that we are interested in
-    return { position, weatherData };
+    return { position, weatherData, place };
   },
 );
 
 const initialState = {
-  weatherData: {},
+  weatherData: {
+    hourly: [],
+    daily: [],
+  },
   error: '',
   status: 'idle',
   isData: false,
-  location: {},
+  location: { place: '', position: {} },
 };
 
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {
-    // loadWeather(state, action) {
-    //   state.weatherData = action.payload;
-    // },
-    changeLocation(state, action) {
-      state.location.position.lon = action.payload.location.center[0];
-      state.location.position.lat = action.payload.location.center[1];
-    },
-  },
+  reducers: {},
   extraReducers: builder =>
     builder
       .addCase(fetchWeather.pending, state => {
@@ -47,6 +47,8 @@ const weatherSlice = createSlice({
         state.weatherData = action.payload.weatherData;
         state.status = 'idle';
         state.isData = true;
+        state.location.position = action.payload.position;
+        state.location.place = action.payload.place;
       })
       .addCase(fetchWeather.rejected, state => {
         (state.status = 'error'),
@@ -57,71 +59,38 @@ const weatherSlice = createSlice({
 
 export default weatherSlice.reducer;
 
-export const { loadWeather, changeLocation } = weatherSlice.actions;
+// export const {} = weatherSlice.actions;
 
 export const getCurrentWeather = state => state.weather.weatherData.current;
 
 export const getTemperature = state => state.weather.weatherData.current.temp;
 export const getTodayPrediction = state => state.weather.weatherData.daily[0];
-export const getDailyPrediction = state => state.weather.weatherData.daily;
+export const getDailyData = state => state.weather.weatherData.daily;
+export const getHourlyData = state => state.weather.weatherData.hourly;
+
+//! the need of implementing createSelector
+export const getHourlyPrediction = createSelector(
+  [getDailyData, getHourlyData],
+  (daily, hourly) => {
+    const hours = hourly.slice(0, 24);
+    const firstHour = hours[0].dt;
+    const lastHour = hours[hours.length - 1].dt;
+    const arr = [
+      ...hours,
+      ...daily
+        .slice(0, 2)
+        .flatMap(day => [
+          { dt: day.sunrise, type: 'sunrise' },
+          { dt: day.sunset, type: 'sunset' },
+        ])
+        .filter(sun => sun.dt >= firstHour && sun.dt <= lastHour),
+    ].sort((a, b) => a.dt - b.dt);
+    return arr;
+  },
+);
 
 export const getTodayPredictionTemp = state =>
   state.weather.weatherData.daily[0].temp;
 export const getTodayPredictionFeelsLike = state =>
   state.weather.weatherData.daily[0].feels_like;
-
-// const cartSlice = createSlice({
-//   name: 'cart',
-//   initialState,
-//   reducers: {
-//     addItem(state, action) {
-//       // payload = newItem
-//       state.cart.push(action.payload);
-//     },
-
-//     deleteItem(state, action) {
-//       //payload = pizzaId
-//       state.cart = state.cart.filter(item => item.pizzaId !== action.payload);
-//     },
-
-//     increaseItemQuantity(state, action) {
-//       //payload = pizzaId
-//       const item = state.cart.find(item => item.pizzaId === action.payload);
-//       item.quantity++;
-//       item.totalPrice = item.quantity * item.unitPrice;
-//     },
-//     decreaseItemQuantity(state, action) {
-//       //payload = pizzaId
-//       const item = state.cart.find(item => item.pizzaId === action.payload);
-//       item.quantity--;
-//       item.totalPrice = item.quantity * item.unitPrice;
-//       if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
-//     },
-//     clearCart(state, action) {
-//       state.cart = [];
-//     },
-//   },
-// });
-
-// export const {
-//   addItem,
-//   deleteItem,
-//   increaseItemQuantity,
-//   decreaseItemQuantity,
-//   clearCart,
-// } = cartSlice.actions;
-
-// export default cartSlice.reducer;
-
-// // check 'reselect' library
-
-// export const getCart = state => state.cart.cart;
-
-// export const getTotalCartQuantity = state =>
-//   state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
-
-// export const getTotalCartPrice = state =>
-//   state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
-
-// export const getCurrentQuantityById = id => state =>
-//   state.cart.cart.find(item => item.pizzaId === id)?.quantity ?? 0;
+export const getLocationName = state => state.weather.location.place;

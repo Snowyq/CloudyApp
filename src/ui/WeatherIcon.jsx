@@ -15,6 +15,7 @@ import {
   WiNightSnow,
   WiRain,
 } from 'react-icons/wi';
+import { FiSunrise, FiSunset } from 'react-icons/fi';
 
 const iconMap = {
   '01d': WiDaySunny,
@@ -35,6 +36,8 @@ const iconMap = {
   '11n': WiNightLightning,
   '13n': WiNightSnow,
   '50n': WiNightFog,
+  sunset: FiSunset,
+  sunrise: FiSunrise,
 };
 
 function WeatherIcon({ iconId, className }) {

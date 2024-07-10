@@ -5,9 +5,9 @@ import Grid from '../../ui/Grid';
 import WeatherHeader from './WeatherHeader';
 import WeatherBlock from './weatherBlocks/WeatherBlock';
 import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
-import NextDaysBlock from './weatherBlocks/NextDaysBlock';
 import PressureBlock from './weatherBlocks/PressureBlock';
 import HourlyPredictionBlock from './weatherBlocks/HourlyPredictionBlock';
+import Loader from '../../ui/Loader';
 
 function Weather() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function Weather() {
   const isData = useSelector(state => state.weather.isData);
   const isLoading = status === 'loading';
   if (isLoading) return <p>loading...</p>;
-  if (!isData) return;
+  if (!isData) return <Loader />;
   return (
     <div className='flex h-[calc(100svh-100px)] flex-col items-center overflow-scroll px-5'>
       <WeatherHeader />
