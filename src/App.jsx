@@ -25,18 +25,6 @@ const router = createBrowserRouter([
         element: <Weather />,
         loader: weatherLoader,
       },
-      // {
-      //   path: '/order/new',
-      //   element: <CreateOrder />,
-      //   action: createOrderAction,
-      // },
-      // {
-      //   path: '/order/:orderId',
-      //   element: <Order />,
-      //   loader: orderLoader,
-      //   action: updateOrderAction,
-      //   errorElement: <Error />,
-      // },
     ],
   },
 ]);

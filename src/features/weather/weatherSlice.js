@@ -9,6 +9,7 @@ export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
   async function ({ lon, lat, place }) {
     const position = { lon, lat };
+    console.log(position, place);
     // 1) We get the user's geolocation position
     // const positionObj = await getPosition();
     // const position = {
@@ -49,6 +50,7 @@ const weatherSlice = createSlice({
         state.isData = true;
         state.location.position = action.payload.position;
         state.location.place = action.payload.place;
+        console.log('dupa');
       })
       .addCase(fetchWeather.rejected, state => {
         (state.status = 'error'),

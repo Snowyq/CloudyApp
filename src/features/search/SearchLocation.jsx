@@ -2,21 +2,18 @@ import { useEffect, useState } from 'react';
 import { PiMagnifyingGlass } from 'react-icons/pi';
 import SearchResults from './SearchResults';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchResults, hideResults, removeResults } from './searchSlice';
-import { useDetectClickOutside } from 'react-detect-click-outside';
+import { fetchResults, hideResults } from './searchSlice';
+import { fetchWeather } from '../weather/weatherSlice';
+import SearchLoading from '../../ui/SearchLoading';
 
 function SearchLocation() {
-  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
-  const { results, showResults } = useSelector(state => state.search);
-  // const isLoading = status === 'loading';
-  // const ref = useDetectClickOutside({ onTriggered: handleShowResults });
+  const { results, status, showResults } = useSelector(state => state.search);
   const isResults = results && showResults;
+  const isLoading = status === 'loading';
+  console.log(status);
 
-  // function handleShowResults() {
-  //   console.log('dupa');
-  //   dispatch(hideResults());
-  // }
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     if (query.length >= 3) {
@@ -26,22 +23,42 @@ function SearchLocation() {
     }
   }, [query, dispatch]);
 
+  function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (!results) return;
+    dispatch(
+      fetchWeather({
+        lon: results[0].center[0],
+        lat: results[0].center[1],
+        place: results[0].place_name,
+      }),
+    );
+    dispatch(hideResults());
+    setQuery('');
+  }
+
+  function handleSearchBlur() {
+    dispatch(hideResults());
+    setQuery('');
+  }
+
   return (
     <div className='relative flex flex-col transition-all'>
-      <div className='flex w-40 items-center rounded-full border border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'>
+      <form
+        onSubmit={handleSearchSubmit}
+        className='flex w-40 items-center rounded-full border border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'
+      >
         <PiMagnifyingGlass className='text-neutral-300' />
         <input
           onChange={e => setQuery(e.target.value)}
           value={query}
-          onBlur={() => {
-            dispatch(hideResults());
-            setQuery('');
-          }}
+          onBlur={handleSearchBlur}
           className='w-full bg-transparent px-2 py-1 focus:border-none focus:outline-none'
           type='text'
           placeholder='search location'
         />
-      </div>
+      </form>
+      {isLoading && <SearchLoading />}
       {isResults && <SearchResults />}
     </div>
   );

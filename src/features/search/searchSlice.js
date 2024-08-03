@@ -9,15 +9,17 @@ const initialState = {
   showResults: false,
 };
 
-let aborter;
+let aborter = null;
 export const fetchResults = createAsyncThunk(
   'search/fetchResults',
   async function (query) {
-    if (aborter) aborter.abort();
+    if (aborter) {
+      aborter.abort();
+    }
     aborter = new AbortController();
     const signal = aborter.signal;
-    const results = await SearchCityByName(query, signal);
 
+    const { results } = await SearchCityByName(query, signal);
     return { results, query };
   },
 );
@@ -40,18 +42,23 @@ const searchSlice = createSlice({
     builder
       .addCase(fetchResults.pending, state => {
         state.status = 'loading';
+        state.results = null;
       })
       .addCase(fetchResults.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.results = action.payload.results;
         state.query = action.payload.query;
         state.showResults = true;
+        console.log(action.payload.aborted);
         state.status = 'idle';
         state.isData = true;
       })
-      .addCase(fetchResults.rejected, state => {
-        (state.status = 'error'),
-          (state.error =
-            'There was a problem getting your address. Make sure to fill this field');
+      .addCase(fetchResults.rejected, (state, action) => {
+        state.status = 'error';
+        console.log(action);
+        state.error =
+          'There was a problem getting your address. Make sure to fill this field';
       }),
 });
 
