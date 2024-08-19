@@ -8,6 +8,7 @@ import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
 import PressureBlock from './weatherBlocks/PressureBlock';
 import HourlyPredictionBlock from './weatherBlocks/HourlyPredictionBlock';
 import Loader from '../../ui/Loader';
+import WindBlock from './weatherBlocks/WindBlock';
 
 function Weather() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function Weather() {
         <HourlyPredictionBlock />
         <FeelsLikeBlock />
         <PressureBlock />
-        <WeatherBlock className='col-span-2' />
+        <WindBlock />
         <WeatherBlock />
         <WeatherBlock />
       </Grid>

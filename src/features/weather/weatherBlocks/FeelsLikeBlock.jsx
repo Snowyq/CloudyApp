@@ -3,6 +3,7 @@ import WeatherBlock from './WeatherBlock';
 import { getTemperature, getTodayPredictionFeelsLike } from '../weatherSlice';
 import { WiDaySunny, WiNightClear, WiThermometer } from 'react-icons/wi';
 import Temperature from '../../../ui/Temperature';
+import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 
 function FeelsLikeBlock() {
   const temp = useSelector(getTemperature);
@@ -12,12 +13,14 @@ function FeelsLikeBlock() {
   if (!temp) return null;
 
   return (
-    <WeatherBlock className='relative col-span-1 flex flex-col gap-4 text-neutral-300'>
-      <div className='-ml-2 flex'>
+    <WeatherBlock className='relative col-span-1 flex flex-col items-center text-neutral-300'>
+      <WeatherBlockHeader>
         <WiThermometer className='text-2xl' />
         <p>feels like</p>
+      </WeatherBlockHeader>
+      <div className='absolute top-1/2 -translate-y-1/2'>
+        <Temperature value={feelsLike} unit='°C' font='semibold' size='2xl' />
       </div>
-      <Temperature value={feelsLike} unit='°C' font='semibold' size='2xl' />
 
       {/* <div className='absolute top-1/2 flex -translate-y-1/2 transform items-center justify-center'>
         <p className='text-3xl text-neutral-100'>{feelsLike}</p>

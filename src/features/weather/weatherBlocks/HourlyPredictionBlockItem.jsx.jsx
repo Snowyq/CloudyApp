@@ -1,15 +1,17 @@
+import { useSelector } from 'react-redux';
 import Temperature from '../../../ui/Temperature';
 import WeatherIcon from '../../../ui/WeatherIcon';
 
-function HourlyPredictionBlockItem({ item }) {
+function HourlyPredictionBlockItem({ item, timeZone }) {
   const isSunMovement = item.type === 'sunset' || item.type === 'sunrise';
 
   const timeOptions = isSunMovement
     ? {
         hour: 'numeric',
         minute: 'numeric',
+        timeZone,
       }
-    : { hour: 'numeric' };
+    : { hour: 'numeric', timeZone };
 
   const time = new Date(item.dt * 1000).toLocaleTimeString(
     'pl-PL',
