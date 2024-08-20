@@ -1,4 +1,5 @@
 import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
+import { calculatePointsOnCircle } from '../utils/helpers';
 
 function PressureBar({ value, maxValue = 900, minValue = 1100 }) {
   // (minValue)850 = -180deg
@@ -12,6 +13,25 @@ function PressureBar({ value, maxValue = 900, minValue = 1100 }) {
     <div className='relative h-12 w-24 before:absolute before:-bottom-14 before:z-10 before:h-14 before:w-24 before:bg-neutral-700'>
       {/* <div className='absolute left-0 top-0 h-24 w-24 rounded-full border-8 border-red-400'></div> */}
       <div className='relative h-24 w-24 rounded-full bg-neutral-300 bg-opacity-20'>
+        {calculatePointsOnCircle({
+          pointsNum: 36,
+          width: 2,
+          height: 8,
+          outerRadius: 48,
+          innerRadius: 40,
+        }).map(point => {
+          return (
+            <div
+              key={point.deg}
+              className='absolute h-[8px] w-[2px] origin-bottom bg-neutral-700 bg-opacity-100'
+              style={{
+                transform: `rotate(${point.deg}deg)`,
+                bottom: `${point.y}px`,
+                left: `${point.x}px`,
+              }}
+            ></div>
+          );
+        })}
         <div
           className={`tranform absolute h-12 w-24 origin-bottom rounded-tl-full rounded-tr-full bg-blue-500`}
           style={{ transform: rotate }}
