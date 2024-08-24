@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import Temperature from '../../../ui/Temperature';
+import ValueDisplay from '../../../ui/ValueDisplay';
 import WeatherIcon from '../../../ui/WeatherIcon';
 
 function HourlyPredictionBlockItem({ item, timeZone }) {
@@ -30,7 +30,7 @@ function HourlyPredictionBlockItem({ item, timeZone }) {
     <div className={`flex flex-col items-center justify-center gap-1`}>
       <p>{time}</p>
       <WeatherIcon iconId={item.weather[0].icon} className={'text-[50px]'} />
-      <Temperature value={item.temp} font='semibold' size='md' />
+      <ValueDisplay value={item.temp} font='semibold' size='md' />
     </div>
   );
 }

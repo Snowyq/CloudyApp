@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import WeatherBlock from './WeatherBlock';
 import { WiCloud, WiCloudy } from 'react-icons/wi';
+import ValueDisplay from '../../../ui/ValueDisplay';
 
 function CloudsBlock() {
   const clouds = useSelector(state => state.weather.weatherData.current.clouds);
@@ -14,9 +15,15 @@ function CloudsBlock() {
         <p>Clouds</p>
       </WeatherBlockHeader>
 
-      <p className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold'>
-        <span className='mr-0.5'>{clouds}</span>%
-      </p>
+      <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl'>
+        <ValueDisplay
+          value={clouds}
+          unit='%'
+          unitAlign='end'
+          size='2xl'
+          valueUnitSpace='0.5'
+        />
+      </div>
     </WeatherBlock>
   );
 }

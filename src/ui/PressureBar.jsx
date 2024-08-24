@@ -1,10 +1,12 @@
 import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
 import { calculatePointsOnCircle } from '../utils/helpers';
+import ValueDisplay from './ValueDisplay';
 
 function PressureBar({ value, maxValue = 900, minValue = 1100 }) {
   // (minValue)850 = -180deg
   // (maxValue)1100 = 0deg
   // (maxValue-minValue) / 180 * (pressure - minValue)
+
   const rotateValue = ((maxValue - minValue) / 180) * (value - minValue);
   const rotate = `rotate(${(-rotateValue + 360).toFixed(0)}deg)`;
   console.log(rotate);
@@ -16,14 +18,14 @@ function PressureBar({ value, maxValue = 900, minValue = 1100 }) {
         {calculatePointsOnCircle({
           pointsNum: 36,
           width: 2,
-          height: 8,
+          height: 10,
           outerRadius: 48,
           innerRadius: 40,
         }).map(point => {
           return (
             <div
               key={point.deg}
-              className='absolute h-[8px] w-[2px] origin-bottom bg-neutral-700 bg-opacity-100'
+              className='absolute h-[10px] w-[2px] origin-bottom bg-neutral-700 bg-opacity-100'
               style={{
                 transform: `rotate(${point.deg}deg)`,
                 bottom: `${point.y}px`,
@@ -42,9 +44,9 @@ function PressureBar({ value, maxValue = 900, minValue = 1100 }) {
           <ArrowCircleUp />
         </div>
       </div>
-      <p className='absolute left-1/2 top-10 z-10 flex -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-neutral-100'>
-        {value}
-      </p>
+      <div className='absolute left-1/2 top-10 z-10 flex -translate-x-1/2 -translate-y-1/2'>
+        <ValueDisplay value={value} unit='' valueFont='semibold' />
+      </div>
     </div>
   );
 }
