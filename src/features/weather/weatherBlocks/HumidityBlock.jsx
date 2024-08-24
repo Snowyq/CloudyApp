@@ -2,6 +2,7 @@ import { WiHumidity } from 'react-icons/wi';
 import WeatherBlock from './WeatherBlock';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { useSelector } from 'react-redux';
+import ValueDisplay from '../../../ui/ValueDisplay';
 
 function HumidityBlock() {
   const humidity = useSelector(
@@ -18,13 +19,26 @@ function HumidityBlock() {
         <p>humidity</p>
       </WeatherBlockHeader>
       <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
-        <p className='text-2xl font-semibold'>
+        {/* <p className='text-2xl font-semibold'>
           <span className='mr-0.5'>{humidity}</span>%
-        </p>
+        </p> */}
+        <ValueDisplay
+          value={humidity}
+          unit='%'
+          unitAlign='bottom'
+          size='2xl'
+          valueUnitSpace='0.5'
+        />
       </div>
-      <p className='text-sm leading-none text-neutral-300'>
+      <ValueDisplay
+        value={dewPoint}
+        textBefore='Dew point:'
+        size='md'
+        valueColor='neutral-300'
+      />
+      {/* <p className='text-sm leading-none text-neutral-300'>
         Dew point: {dewPoint}°
-      </p>
+      </p> */}
     </WeatherBlock>
   );
 }

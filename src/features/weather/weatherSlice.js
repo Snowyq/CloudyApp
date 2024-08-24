@@ -3,7 +3,7 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import { getWeather } from '../../services/apiWeather';
+import { getWeather, getWeatherMap } from '../../services/apiWeather';
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
@@ -19,6 +19,7 @@ export const fetchWeather = createAsyncThunk(
     // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
     console.log(position);
     const weatherData = await getWeather(position);
+    // const weatherMap = await getWeatherMap(position, 'precipitation_new', 6);
     // 3) Then we return an object with the data that we are interested in
     return { position, weatherData, place };
   },
@@ -69,6 +70,7 @@ export const getTemperature = state => state.weather.weatherData.current.temp;
 export const getTodayPrediction = state => state.weather.weatherData.daily[0];
 export const getDailyData = state => state.weather.weatherData.daily;
 export const getHourlyData = state => state.weather.weatherData.hourly;
+export const getPosition = state => state.weather.location.position;
 
 //! the need of implementing createSelector
 export const getHourlyPrediction = createSelector(

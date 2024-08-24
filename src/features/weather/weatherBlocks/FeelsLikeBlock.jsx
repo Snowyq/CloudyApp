@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import WeatherBlock from './WeatherBlock';
 import { getTemperature, getTodayPredictionFeelsLike } from '../weatherSlice';
 import { WiDaySunny, WiNightClear, WiThermometer } from 'react-icons/wi';
-import Temperature from '../../../ui/Temperature';
+import ValueDisplay from '../../../ui/ValueDisplay';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 
 function FeelsLikeBlock() {
@@ -19,7 +19,7 @@ function FeelsLikeBlock() {
         <p>feels like</p>
       </WeatherBlockHeader>
       <div className='absolute top-1/2 -translate-y-1/2'>
-        <Temperature value={feelsLike} unit='°C' font='semibold' size='2xl' />
+        <ValueDisplay value={feelsLike} unit='°C' font='semibold' size='2xl' />
       </div>
 
       {/* <div className='absolute top-1/2 flex -translate-y-1/2 transform items-center justify-center'>
