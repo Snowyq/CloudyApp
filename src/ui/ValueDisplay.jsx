@@ -2,44 +2,48 @@ function ValueDisplay({
   value,
   valueFont = 'normal',
   valueUnitSpace = '0',
-  valueLeading = '[1.1]',
   valueColor = 'neutral-100',
   size = 'xl',
-  unit = '°C',
-  unitSize = '[0.8em]',
-  unitAlign = 'start',
+  unit = '°',
+  unitColor = valueColor,
+  unitFont = valueFont,
   textBefore = '',
   textAfter = '',
   textFont = 'normal',
   textColor = 'neutral-400',
   fixed = '1',
+  noValue = '',
+  className = '',
+  type = '',
 }) {
   const isValue = value || value == 0;
 
+  let mainStyle;
+  let valueStyle;
+  let unitStyle;
+
+  switch (type) {
+    case 'primary':
+      mainStyle = `flex items-end justify-start text-2xl font-semibold w-fit text-${textColor} ${className}`;
+      valueStyle = `text-${valueColor} font-${valueFont}`;
+      unitStyle = `ml-${valueUnitSpace} text-${unitColor} font-${unitFont}`;
+      break;
+    default:
+      mainStyle = `flex items-end justify-start text-${size} font-${textFont} w-fit text-${textColor} ${className}`;
+      valueStyle = `text-${valueColor} font-${valueFont}`;
+      unitStyle = `ml-${valueUnitSpace} text-${unitColor} font-${unitFont}`;
+  }
+
+  if (!isValue) return <span>no Value</span>;
+
   return (
-    <span
-      className={`flex items-end justify-start text-${size} font-${textFont} w-fit text-${textColor} `}
-    >
-      {textBefore && (
-        <span className='mr-1 text-[0.8em] leading-tight'>{textBefore}</span>
-      )}
-      {isValue ? (
-        <span
-          className={`leading-${valueLeading} text-${valueColor} font-${valueFont} align-bottom`}
-        >
-          {parseFloat(value.toFixed(fixed))}
-        </span>
-      ) : (
-        <span>no Value</span>
-      )}
-      <span
-        className={`leading-tight text-${unitSize} ml-${valueUnitSpace} self-${unitAlign} `}
-      >
-        {unit}
-      </span>
-      {textAfter && (
-        <span className='ml-1 text-[0.8em] leading-tight'>{textAfter}</span>
-      )}
+    <span className={mainStyle}>
+      {textBefore && <span className='mr-1'>{textBefore}</span>}
+
+      <span className={valueStyle}>{parseFloat(value.toFixed(fixed))}</span>
+      <span className={unitStyle}>{unit}</span>
+
+      {textAfter && <span className='ml-1'>{textAfter}</span>}
     </span>
   );
 }

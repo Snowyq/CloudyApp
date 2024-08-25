@@ -14,12 +14,12 @@ function FeelsLikeBlock() {
 
   return (
     <WeatherBlock className='relative col-span-1 flex flex-col items-center text-neutral-300'>
-      <WeatherBlockHeader>
-        <WiThermometer className='text-2xl' />
+      <WeatherBlockHeader className='flex items-center'>
+        <WiThermometer className='text-lg' />
         <p>feels like</p>
       </WeatherBlockHeader>
       <div className='absolute top-1/2 -translate-y-1/2'>
-        <ValueDisplay value={feelsLike} unit='°C' font='semibold' size='2xl' />
+        <ValueDisplay value={feelsLike} type='primary' />
       </div>
 
       {/* <div className='absolute top-1/2 flex -translate-y-1/2 transform items-center justify-center'>

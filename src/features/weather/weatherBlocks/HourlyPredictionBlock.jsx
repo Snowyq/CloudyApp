@@ -17,7 +17,7 @@ function HourlyPredictionBlock() {
   const displayedPrediction = hourlyPrediction;
 
   return (
-    <WeatherBlock className='no-scrollbar col-span-2 flex gap-3 overflow-x-scroll sm:col-span-3'>
+    <WeatherBlock className='no-scrollbar col-span-full flex gap-3 overflow-x-scroll'>
       {displayedPrediction.map((item, index) => {
         return (
           <HourlyPredictionBlockItem

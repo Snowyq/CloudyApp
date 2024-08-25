@@ -13,6 +13,7 @@ import HumidityBlock from './weatherBlocks/HumidityBlock';
 import CloudsBlock from './weatherBlocks/CloudsBlock';
 import VisibilityBlock from './weatherBlocks/VisibilityBlock';
 import MapBlock from './weatherBlocks/MapBlock';
+import RainBlock from './weatherBlocks/RainBlock';
 
 function Weather() {
   const dispatch = useDispatch();
@@ -26,9 +27,9 @@ function Weather() {
   if (isLoading) return <p>loading...</p>;
   if (!isData) return <Loader />;
   return (
-    <div className='flex h-[calc(100svh-100px)] flex-col items-center overflow-scroll px-5 pb-5'>
+    <div className='flex h-[calc(100svh-50px)] flex-col items-center overflow-scroll px-1 pb-2 semi-sm:px-2 sm:px-3'>
       <WeatherHeader />
-      <Grid className='w-full grid-flow-dense auto-rows-[150px] grid-cols-weather justify-center gap-3'>
+      <Grid className='w-full grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] semi-sm:auto-rows-[125px] semi-sm:grid-cols-weather-125 semi-sm:gap-2 md:auto-rows-[150px] md:grid-cols-weather-150 md:gap-2.5'>
         <HourlyPredictionBlock />
         <FeelsLikeBlock />
         <PressureBlock />
@@ -37,7 +38,7 @@ function Weather() {
         <CloudsBlock />
         <VisibilityBlock />
         <MapBlock />
-        <WeatherBlock />
+        <RainBlock />
         <WeatherBlock />
       </Grid>
     </div>

@@ -1,10 +1,12 @@
 import { PiArrowFatUp, PiArrowFatUpFill, PiLineVertical } from 'react-icons/pi';
 import { calculatePointsOnCircle } from '../utils/helpers';
 
-function WindDirection({ windDeg }) {
+function WindDirection({ windDeg, className }) {
   return (
     <div>
-      <div className='bg-opacity-2 relative z-50 h-24 w-24 scale-[1] rounded-full'>
+      <div
+        className={`bg-opacity-2 relative z-50 h-24 w-24 rounded-full ${className}`}
+      >
         <div className='absolute left-1/2 top-1/2 z-50 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-700'></div>
         {/* <div className='absolute bottom-0 left-1/2 h-2 w-1 -translate-x-1/2 bg-red-500'></div> */}
         {/* <p className='absolute left-1/2 top-1/2 z-[100] -translate-x-1/2 -translate-y-1/2'>
