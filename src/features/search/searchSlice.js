@@ -45,18 +45,14 @@ const searchSlice = createSlice({
         state.results = null;
       })
       .addCase(fetchResults.fulfilled, (state, action) => {
-        console.log(action.payload);
-
         state.results = action.payload.results;
         state.query = action.payload.query;
         state.showResults = true;
-        console.log(action.payload.aborted);
         state.status = 'idle';
         state.isData = true;
       })
       .addCase(fetchResults.rejected, (state, action) => {
         state.status = 'error';
-        console.log(action);
         state.error =
           'There was a problem getting your address. Make sure to fill this field';
       }),

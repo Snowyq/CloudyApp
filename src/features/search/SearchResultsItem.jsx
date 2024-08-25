@@ -29,7 +29,7 @@ function SearchResultsItem({ result }) {
 
   return (
     <div
-      className='mx-1 cursor-pointer rounded py-1 pl-4 text-lg text-neutral-200 hover:bg-neutral-800'
+      className='mx-1 cursor-pointer rounded py-2 pl-4 text-lg text-neutral-200 hover:bg-neutral-800'
       onMouseDown={() => {
         dispatch(
           fetchWeather({

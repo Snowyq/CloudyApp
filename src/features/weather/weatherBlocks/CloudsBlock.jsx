@@ -6,8 +6,6 @@ import ValueDisplay from '../../../ui/ValueDisplay';
 
 function CloudsBlock() {
   const clouds = useSelector(state => state.weather.weatherData.current.clouds);
-  console.log(clouds);
-
   return (
     <WeatherBlock>
       <WeatherBlockHeader className='flex items-center'>
@@ -19,8 +17,7 @@ function CloudsBlock() {
         <ValueDisplay
           value={clouds}
           unit='%'
-          unitAlign='end'
-          size='2xl'
+          type='primary'
           valueUnitSpace='0.5'
         />
       </div>

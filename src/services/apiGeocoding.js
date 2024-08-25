@@ -20,7 +20,6 @@ export async function SearchCityByName(query, signal) {
       signal: signal,
     });
     const data = await res.json();
-    console.log(data);
     return { results: data.features };
   } catch (err) {
     if (err.name !== 'AbortError') throw new Error(err.message);

@@ -11,7 +11,6 @@ function SearchLocation() {
   const { results, status, showResults } = useSelector(state => state.search);
   const isResults = results && showResults;
   const isLoading = status === 'loading';
-  console.log(status);
 
   const [query, setQuery] = useState('');
 
@@ -43,17 +42,17 @@ function SearchLocation() {
   }
 
   return (
-    <div className='relative flex flex-col transition-all'>
+    <div className='relative z-[1000] flex flex-col transition-all'>
       <form
         onSubmit={handleSearchSubmit}
-        className='flex w-40 items-center rounded-full border border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'
+        className='z-30 flex w-40 items-center rounded-full border border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'
       >
-        <PiMagnifyingGlass className='text-neutral-300' />
+        <PiMagnifyingGlass className='z-10 text-neutral-300' />
         <input
           onChange={e => setQuery(e.target.value)}
           value={query}
           onBlur={handleSearchBlur}
-          className='w-full bg-transparent px-2 py-1 focus:border-none focus:outline-none'
+          className='z-20 w-full bg-transparent px-2 py-1 focus:border-none focus:outline-none'
           type='text'
           placeholder='search location'
         />

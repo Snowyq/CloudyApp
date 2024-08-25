@@ -27,14 +27,20 @@ function WeatherHeader() {
           </p>
         </div>
         <div className='relative flex items-center justify-center'>
-          <WiThermometer className='mr-2 text-2xl text-neutral-400' />
-          <ValueDisplay value={temp} size='4xl' font='semibold' />
+          <ValueDisplay
+            value={temp}
+            size='4xl'
+            font='semibold'
+            textBefore={<WiThermometer />}
+          />
         </div>
         <p className='flex w-full items-center gap-1 text-neutral-400'>
-          <span>from</span>
-          <ValueDisplay value={tempPrediciton.min} size='sm' />
-          <span>to</span>
-          <ValueDisplay value={tempPrediciton.max} size='sm' />
+          <ValueDisplay
+            value={tempPrediciton.min}
+            size='sm'
+            textBefore='from'
+          />
+          <ValueDisplay value={tempPrediciton.max} size='sm' textBefore='to' />
         </p>
       </div>
       <div className='relative -mt-5 flex flex-col items-center justify-center'>

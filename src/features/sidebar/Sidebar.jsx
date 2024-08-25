@@ -12,7 +12,7 @@ function Sidebar() {
       className={`${showSidebar ? 'translate-x-0' : '-translate-x-[100%]'} absolute z-[100] flex h-full w-[300px] transform flex-col bg-neutral-900 px-5 transition-all lg:z-0 lg:transform-none 2xl:rounded-l-lg`}
     >
       {/* bar */}
-      <div className='flex h-[100px] items-center'>
+      <div className='flex h-[50px] items-center'>
         {showSidebar && <ToggleSidebarBtn />}
       </div>
 

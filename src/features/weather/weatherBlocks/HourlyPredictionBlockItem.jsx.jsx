@@ -28,9 +28,9 @@ function HourlyPredictionBlockItem({ item, timeZone }) {
 
   return (
     <div className={`flex flex-col items-center justify-center gap-1`}>
-      <p>{time}</p>
-      <WeatherIcon iconId={item.weather[0].icon} className={'text-[50px]'} />
-      <ValueDisplay value={item.temp} font='semibold' size='md' />
+      <p className='text-sm'>{time}</p>
+      <WeatherIcon iconId={item.weather[0].icon} className={'text-4xl'} />
+      <ValueDisplay value={item.temp} font='semibold' size='sm' />
     </div>
   );
 }

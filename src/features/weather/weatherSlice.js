@@ -9,7 +9,6 @@ export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
   async function ({ lon, lat, place }) {
     const position = { lon, lat };
-    console.log(position, place);
     // 1) We get the user's geolocation position
     // const positionObj = await getPosition();
     // const position = {
@@ -17,7 +16,6 @@ export const fetchWeather = createAsyncThunk(
     //   longitude: positionObj.coords.longitude,
     // };
     // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
-    console.log(position);
     const weatherData = await getWeather(position);
     // const weatherMap = await getWeatherMap(position, 'precipitation_new', 6);
     // 3) Then we return an object with the data that we are interested in
@@ -51,12 +49,11 @@ const weatherSlice = createSlice({
         state.isData = true;
         state.location.position = action.payload.position;
         state.location.place = action.payload.place;
-        console.log('dupa');
       })
       .addCase(fetchWeather.rejected, state => {
-        (state.status = 'error'),
-          (state.error =
-            'There was a problem getting your address. Make sure to fill this field');
+        state.status = 'error';
+        state.error =
+          'There was a problem getting your address. Make sure to fill this field';
       }),
 });
 
