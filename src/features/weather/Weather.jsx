@@ -14,6 +14,7 @@ import CloudsBlock from './weatherBlocks/CloudsBlock';
 import VisibilityBlock from './weatherBlocks/VisibilityBlock';
 import MapBlock from './weatherBlocks/MapBlock';
 import RainBlock from './weatherBlocks/RainBlock';
+import UviBlock from './weatherBlocks/UviBlock';
 
 function Weather() {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ function Weather() {
         <VisibilityBlock />
         <MapBlock />
         <RainBlock />
-        <WeatherBlock />
+        <UviBlock />
       </Grid>
     </div>
   );

@@ -15,6 +15,9 @@ export default {
         'weather-85': 'repeat( auto-fill, minmax(85px, 85px) )',
         'weather-80': 'repeat( auto-fill, minmax(80px, 80px) )',
       },
+      backgroundImage: ({ theme }) => ({
+        uvi: `linear-gradient( to right, ${theme('colors.green.500')} 0 18%, ${theme('colors.yellow.500')} 27% 45%, ${theme('colors.orange.500')} 54% 64%, ${theme('colors.red.500')} 73% 91%, ${theme('colors.violet.500')})`,
+      }),
     },
   },
   plugins: ['prettier-plugin-tailwindcss'],
