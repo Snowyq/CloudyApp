@@ -25,7 +25,7 @@ function WindBlock() {
         <p>wind</p>
       </WeatherBlockHeader>
 
-      <div className='absolute left-1/2 top-1/2 mt-2 -translate-x-1/2 -translate-y-1/2 semi-sm:mt-2.5'>
+      <div className='absolute left-1/2 top-1/2 mt-2 -translate-x-1/2 -translate-y-1/2 semi-sm:mt-2.5 sm:hidden'>
         <div className='absolute left-1/2 top-1/2 z-[100] ml-0.5 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-0'>
           <ValueDisplay
             value={windSpeed}
@@ -36,10 +36,36 @@ function WindBlock() {
           />
           <p className='-mt-1.5 text-[0.7rem]'>km/h</p>
         </div>
-        <WindDirection
-          windDeg={windDeg}
-          className='scale-[0.72] semi-sm:scale-[0.9]'
-        />
+        <div className='scale-[0.75] semi-sm:scale-[0.95]'>
+          <WindDirection windDeg={windDeg} />
+        </div>
+      </div>
+      <div className='hidden sm:flex'>
+        <div className='ml-1 flex flex-col gap-2'>
+          <div>
+            <ValueDisplay
+              value={windSpeed}
+              unit='km/h'
+              unitColor='neutral-400'
+              type='primary'
+              valueUnitSpace='1'
+            />
+            <p className='leading-none text-neutral-400'>wind speed</p>
+          </div>
+          {!isNaN(windGust) && (
+            <ValueDisplay
+              value={windGust}
+              unit='km/h'
+              unitColor='neutral-400'
+              textBefore='wind gust:'
+              size='sm'
+              valueUnitSpace='1'
+            />
+          )}
+        </div>
+        <div className='absolute right-0 top-1/2 mr-4 -translate-y-1/2'>
+          <WindDirection windDeg={windDeg} className='scale-[1.1]' />
+        </div>
       </div>
     </WeatherBlock>
   );

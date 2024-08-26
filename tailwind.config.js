@@ -8,6 +8,7 @@ export default {
       },
       gridTemplateColumns: {
         'weather-150': 'repeat( auto-fill, minmax(150px, 150px) )',
+        'weather-140': 'repeat( auto-fill, minmax(140px, 140px) )',
         'weather-125': 'repeat( auto-fill, minmax(125px, 125px) )',
         'weather-100': 'repeat( auto-fill, minmax(100px, 100px) )',
         'weather-95': 'repeat( auto-fill, minmax(95px, 95px) )',

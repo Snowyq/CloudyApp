@@ -24,7 +24,7 @@ function ValueDisplay({
 
   switch (type) {
     case 'primary':
-      mainStyle = `flex items-end justify-start text-2xl font-normal w-fit text-${textColor} ${className}`;
+      mainStyle = `flex items-end justify-start text-xl semi-sm:text-2xl font-normal w-fit text-${textColor} ${className}`;
       valueStyle = `text-${valueColor} font-${valueFont}`;
       unitStyle = `ml-${valueUnitSpace} text-${unitColor} font-${unitFont}`;
       break;

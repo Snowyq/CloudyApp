@@ -30,13 +30,12 @@ function HumidityBlock() {
           valueUnitSpace='0.5'
         />
       </AbsoluteCenter>
-      <div className='text-md flex items-center leading-4 semi-sm:items-end semi-sm:leading-normal md:text-lg'>
-        <p className='semi-sm:mr-1'>Dew point</p>
+      <div className='flex items-center text-xs leading-4 semi-sm:items-end semi-sm:text-sm semi-sm:leading-normal sm:text-base md:text-lg'>
+        <p className='mr-1'>Dew point</p>
         <ValueDisplay
           value={dewPoint}
           size='[1em]'
           valueColor='neutral-100'
-          valueFont='semibold'
           className='text-nowrap'
         />
       </div>
