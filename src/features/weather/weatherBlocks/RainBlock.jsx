@@ -4,9 +4,12 @@ import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { getCurrentWeather } from '../weatherSlice';
 
 function RainBlock() {
-  const rain = useSelector(state => state.weather.weatherData.current.rain);
-  const current = useSelector(state => state.weather.weatherData.hourly);
-  console.log(rain);
+  const rain = useSelector(state => state.weather.weatherData.daily.rain);
+  const current = useSelector(state => state.weather.weatherData.daily[0].pop);
+  const minutely = useSelector(state => state.weather.weatherData.minutely);
+  // console.log(rain);
+  // console.log(current);
+  // console.log(minutely);
 
   return (
     <WeatherBlock>
