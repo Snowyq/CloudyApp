@@ -14,7 +14,7 @@ function WeatherBlockCarouselDots({
           <Button
             key={index}
             onClick={() => setDisplayedItem(index)}
-            className='p-0.5'
+            className='p-1'
           >
             <div
               className={`h-[0.5em] w-[0.5em] rounded-full ${index == displayedItem ? 'scale-110 bg-neutral-300 shadow-sm shadow-neutral-900' : 'bg-neutral-500'}`}

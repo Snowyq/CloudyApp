@@ -3,6 +3,9 @@ import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { useSelector } from 'react-redux';
 import { getCurrentWeather } from '../weatherSlice';
 import WeatherBlockCarousel from '../../../ui/WeatherBlockCarousel';
+import { GoAlert, GoAlertFill } from 'react-icons/go';
+import { FiAlertCircle } from 'react-icons/fi';
+
 import WeatherBlockCarouselItem from '../../../ui/WeatherBlockCarouselItem';
 
 function AlertBlock() {
@@ -17,29 +20,30 @@ function AlertBlock() {
 
   if (!alerts) return null;
 
-  console.log(alerts);
-  console.log(current);
-
   return (
     <WeatherBlock className='col-span-2'>
-      <WeatherBlockHeader>
+      <WeatherBlockHeader className='ml-1'>
+        <FiAlertCircle className='mr-1 text-sm' />
         <p>Alerts</p>
       </WeatherBlockHeader>
       <WeatherBlockCarousel>
         {alerts.map((alert, index) => (
           <WeatherBlockCarouselItem
             key={index}
-            className='flex flex-col overflow-hidden overflow-ellipsis whitespace-nowrap px-3'
+            className='flex w-full items-start gap-3 px-3 py-1'
           >
-            <p className='text-xs leading-none text-neutral-400'>
-              {alert.sender_name}
-            </p>
-            <p className='overflow-hidden overflow-ellipsis whitespace-nowrap text-base leading-tight'>
-              {alert.event}
-            </p>
-            <p className='text-sm text-neutral-400'>
-              from {showTime(alert.start)} to {showTime(alert.end)}
-            </p>
+            <GoAlertFill className='hidden shrink-0 text-5xl semi-sm:flex' />
+            <div className='flex flex-col overflow-hidden leading-none'>
+              <p className='overflow-hidden overflow-ellipsis whitespace-nowrap text-xs text-neutral-400'>
+                {alert.sender_name}
+              </p>
+              <p className='max-h-[2.5em] overflow-hidden overflow-ellipsis whitespace-nowrap text-base semi-sm:line-clamp-2 semi-sm:whitespace-normal semi-sm:text-lg semi-sm:leading-tight'>
+                {alert.event}
+              </p>
+              <p className='text-sm text-neutral-400'>
+                from {showTime(alert.start)} to {showTime(alert.end)}
+              </p>
+            </div>
           </WeatherBlockCarouselItem>
         ))}
       </WeatherBlockCarousel>
