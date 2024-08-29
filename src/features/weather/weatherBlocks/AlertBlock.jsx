@@ -6,8 +6,6 @@ import WeatherBlockCarousel from '../../../ui/WeatherBlockCarousel';
 import { GoAlert, GoAlertFill } from 'react-icons/go';
 import { FiAlertCircle } from 'react-icons/fi';
 
-import WeatherBlockCarouselItem from '../../../ui/WeatherBlockCarouselItem';
-
 function AlertBlock() {
   const alerts = useSelector(state => state.weather.weatherData.alerts);
   const current = useSelector(getCurrentWeather);
@@ -28,10 +26,7 @@ function AlertBlock() {
       </WeatherBlockHeader>
       <WeatherBlockCarousel>
         {alerts.map((alert, index) => (
-          <WeatherBlockCarouselItem
-            key={index}
-            className='flex w-full items-start gap-3 px-3 py-1'
-          >
+          <div key={index} className='flex w-full items-start gap-3 px-3 py-1'>
             <GoAlertFill className='hidden shrink-0 text-5xl semi-sm:flex' />
             <div className='flex flex-col overflow-hidden leading-none'>
               <p className='overflow-hidden overflow-ellipsis whitespace-nowrap text-xs text-neutral-400'>
@@ -44,7 +39,7 @@ function AlertBlock() {
                 from {showTime(alert.start)} to {showTime(alert.end)}
               </p>
             </div>
-          </WeatherBlockCarouselItem>
+          </div>
         ))}
       </WeatherBlockCarousel>
     </WeatherBlock>
