@@ -31,7 +31,7 @@ function Weather() {
   return (
     <div className='flex h-[calc(100svh-50px)] flex-col items-center overflow-scroll px-1 pb-2 semi-sm:px-2 sm:px-3'>
       <WeatherHeader />
-      <Grid className='md:grid-cols-weather-140 w-full grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] semi-sm:auto-rows-[125px] semi-sm:grid-cols-weather-125 semi-sm:gap-2 md:auto-rows-[140px] md:gap-2.5 lg:auto-rows-[150px] lg:grid-cols-weather-150'>
+      <Grid className='semi-sm:grid-cols-weather-120 md:grid-cols-weather-135 w-full grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] semi-sm:auto-rows-[120px] semi-sm:gap-2 sm:auto-rows-[125px] sm:grid-cols-weather-125 md:auto-rows-[135px] md:gap-2 lg:auto-rows-[150px] lg:grid-cols-weather-150'>
         <HourlyPredictionBlock />
         <AlertBlock />
         <FeelsLikeBlock />

@@ -1,6 +1,7 @@
 import WeatherBlockCarouselButtons from './WeatherBlockCarouselButtons';
 import { Children, useEffect, useState } from 'react';
 import WeatherBlockCarouselDots from './WeatherBlockCarouselDots';
+import WeatherBlockCarouselItems from './WeatherBlockCarouselItems';
 
 function WeatherBlockCarousel({ children }) {
   const [displayedItem, setDisplayedItem] = useState(0);
@@ -34,18 +35,28 @@ function WeatherBlockCarousel({ children }) {
     return () => clearInterval(id);
   }, [displayedItem, carouselItemsNum]);
 
+  const CarouselItemsContainerWidth = carouselItemsNum * 100;
+  const CarouselItemWidth = 100 / carouselItemsNum;
+  const translate = areMultipleItems
+    ? (displayedItem * 100) / carouselItemsNum
+    : 0;
+  console.log(displayedItem);
+  console.log(CarouselItemWidth);
+  console.log(CarouselItemsContainerWidth);
+
   return (
     <div className='w-full overflow-hidden'>
       {/* Carousel Items */}
-      <div
-        className='flex transition-all duration-[400ms]'
+      <WeatherBlockCarouselItems
+        className='flex overflow-hidden transition-all duration-[400ms]'
         style={{
-          width: carouselItemsNum * 100 + '%',
-          translate: `-${(displayedItem * 100) / carouselItemsNum}% 0px`,
+          width: CarouselItemsContainerWidth + '%',
+          translate: `-${translate}% 0px`,
         }}
+        CarouselItemWidth={CarouselItemWidth}
       >
         {children}
-      </div>
+      </WeatherBlockCarouselItems>
 
       {/* Arrows */}
       {areMultipleItems && (
