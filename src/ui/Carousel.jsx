@@ -1,9 +1,9 @@
-import WeatherBlockCarouselButtons from './WeatherBlockCarouselButtons';
+import SideButtons from './SideButtons';
 import { Children, useEffect, useState } from 'react';
-import WeatherBlockCarouselDots from './WeatherBlockCarouselDots';
-import WeatherBlockCarouselItems from './WeatherBlockCarouselItems';
+import CarouselDots from './CarouselDots';
+import CarouselItems from './CarouselItems';
 
-function WeatherBlockCarousel({ children }) {
+function Carousel({ children }) {
   const [displayedItem, setDisplayedItem] = useState(0);
   const carouselItemsNum = Children.count(children);
 
@@ -40,14 +40,11 @@ function WeatherBlockCarousel({ children }) {
   const translate = areMultipleItems
     ? (displayedItem * 100) / carouselItemsNum
     : 0;
-  console.log(displayedItem);
-  console.log(CarouselItemWidth);
-  console.log(CarouselItemsContainerWidth);
 
   return (
     <div className='w-full overflow-hidden'>
       {/* Carousel Items */}
-      <WeatherBlockCarouselItems
+      <CarouselItems
         className='flex overflow-hidden transition-all duration-[400ms]'
         style={{
           width: CarouselItemsContainerWidth + '%',
@@ -56,19 +53,19 @@ function WeatherBlockCarousel({ children }) {
         CarouselItemWidth={CarouselItemWidth}
       >
         {children}
-      </WeatherBlockCarouselItems>
+      </CarouselItems>
 
       {/* Arrows */}
       {areMultipleItems && (
-        <WeatherBlockCarouselButtons
-          handleMoveBack={handleMoveBack}
-          handleMoveForward={handleMoveForward}
+        <SideButtons
+          onLeftArrowClick={handleMoveBack}
+          onRightArrowClick={handleMoveForward}
         />
       )}
 
       {/* dots */}
       {areMultipleItems && (
-        <WeatherBlockCarouselDots
+        <CarouselDots
           itemsNum={carouselItemsNum}
           className={`absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 gap-1 text-sm`}
           displayedItem={displayedItem}
@@ -79,4 +76,4 @@ function WeatherBlockCarousel({ children }) {
   );
 }
 
-export default WeatherBlockCarousel;
+export default Carousel;

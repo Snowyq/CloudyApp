@@ -45,7 +45,7 @@ function SearchLocation() {
     <div className='relative z-[1000] flex flex-col transition-all'>
       <form
         onSubmit={handleSearchSubmit}
-        className='z-30 flex w-40 items-center rounded-full border border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'
+        className='z-30 flex w-40 items-center rounded-full border-2 border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'
       >
         <PiMagnifyingGlass className='z-10 text-neutral-300' />
         <input

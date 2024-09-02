@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import WeatherIcon from '../../../ui/WeatherIcon';
 
-function HourlyPredictionBlockItem({ item, timeZone }) {
+function HourlyPredictionBlockItem({ item, timeZone, index }) {
   const isSunMovement = item.type === 'sunset' || item.type === 'sunrise';
 
   const timeOptions = isSunMovement
@@ -20,17 +20,26 @@ function HourlyPredictionBlockItem({ item, timeZone }) {
 
   if (isSunMovement)
     return (
-      <div className={`mx-5 flex flex-col items-center justify-center gap-1`}>
-        <WeatherIcon iconId={item.type} className={'text-[50px]'} />
-        <p className=''>{time}</p>
+      <div
+        className={`mx-5 flex flex-col items-center justify-center gap-1 sm:mx-6`}
+      >
+        <WeatherIcon iconId={item.type} className={'text-[40px]'} />
+        <p className='text-sm sm:text-base'>{time}</p>
       </div>
     );
 
   return (
-    <div className={`flex flex-col items-center justify-center gap-1`}>
-      <p className='text-sm'>{time}</p>
-      <WeatherIcon iconId={item.weather[0].icon} className={'text-4xl'} />
-      <ValueDisplay value={item.temp} font='semibold' size='sm' />
+    <div
+      className={`flex h-full flex-col items-center justify-between py-2 text-sm sm:text-base`}
+    >
+      <p className=''>{index == 0 ? 'now' : time}</p>
+      <div>
+        <WeatherIcon iconId={item.weather[0].icon} className={'text-4xl'} />
+        <p className='text-sm text-sky-600'>
+          {item.pop != 0 ? item.pop * 100 + '%' : ''}
+        </p>
+      </div>
+      <ValueDisplay value={item.temp} font='semibold' size='[1em]' />
     </div>
   );
 }

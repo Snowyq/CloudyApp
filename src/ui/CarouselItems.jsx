@@ -1,11 +1,6 @@
 import AbsoluteCenter from './AbsoluteCenter';
 
-function WeatherBlockCarouselItems({
-  children,
-  className,
-  style,
-  CarouselItemWidth,
-}) {
+function CarouselItems({ children, className, style, CarouselItemWidth }) {
   return (
     <div className={`w-full ${className}`} style={style}>
       {children.map((child, index) => (
@@ -17,4 +12,4 @@ function WeatherBlockCarouselItems({
   );
 }
 
-export default WeatherBlockCarouselItems;
+export default CarouselItems;
