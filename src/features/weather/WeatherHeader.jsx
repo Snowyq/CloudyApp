@@ -19,38 +19,40 @@ function WeatherHeader() {
   } = currentWeather;
 
   return (
-    <div className='flex items-center justify-center gap-10 py-10'>
-      <div className='flex flex-col items-center gap-2'>
-        <div>
-          <p className='text-3xl text-neutral-300'>
-            {locationName.split(',')[0]}
-          </p>
-        </div>
-        <div className='relative flex items-center justify-center'>
-          <ValueDisplay
-            value={temp}
-            size='4xl'
-            font='semibold'
-            textBefore={<WiThermometer />}
-          />
-        </div>
-        <p className='flex w-full items-center gap-1 text-neutral-400'>
-          <ValueDisplay
-            value={tempPrediciton.min}
-            size='sm'
-            textBefore='from'
-          />
-          <ValueDisplay value={tempPrediciton.max} size='sm' textBefore='to' />
-        </p>
-      </div>
-      <div className='relative -mt-5 flex flex-col items-center justify-center'>
+    <div className='mb-0 mt-20 flex flex-col items-center justify-center gap-2 py-10'>
+      <p className='text-5xl text-neutral-300'>{locationName.split(',')[0]}</p>
+
+      <div className='flex items-center justify-center gap-4'>
         <WeatherIcon
           iconId={weather.icon}
           className='m-0 h-[120px] w-[120px] p-0 text-neutral-300'
         />
-        <p className='text-nowrap bg-neutral-600 text-neutral-300'>
-          {weather.description}
-        </p>
+
+        <div className='flex flex-col items-start justify-center'>
+          <p className='text-lg leading-normal text-neutral-400'>
+            {weather.description}
+          </p>
+          <div className='relative flex items-center justify-center'>
+            {/* <WiThermometer className='text-4xl' /> */}
+            <ValueDisplay value={temp} size='5xl' font='semibold' />
+          </div>
+          <div className='mt-1 flex w-full items-center justify-center gap-1'>
+            <ValueDisplay
+              value={tempPrediciton.min}
+              size='sm'
+              textBefore='from'
+              className='leading-normal'
+              valueColor='neutral-300'
+            />
+            <ValueDisplay
+              value={tempPrediciton.max}
+              size='sm'
+              textBefore='to'
+              className='leading-normal'
+              valueColor='neutral-300'
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

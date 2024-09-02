@@ -2,7 +2,7 @@ import WeatherBlock from './WeatherBlock';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { useSelector } from 'react-redux';
 import { getCurrentWeather } from '../weatherSlice';
-import WeatherBlockCarousel from '../../../ui/WeatherBlockCarousel';
+import WeatherBlockCarousel from '../../../ui/Carousel';
 import { GoAlert, GoAlertFill } from 'react-icons/go';
 import { FiAlertCircle } from 'react-icons/fi';
 

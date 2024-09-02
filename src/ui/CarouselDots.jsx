@@ -1,6 +1,6 @@
 import Button from './Button';
 
-function WeatherBlockCarouselDots({
+function CarouselDots({
   itemsNum,
   className,
   displayedItem,
@@ -26,4 +26,4 @@ function WeatherBlockCarouselDots({
   );
 }
 
-export default WeatherBlockCarouselDots;
+export default CarouselDots;
