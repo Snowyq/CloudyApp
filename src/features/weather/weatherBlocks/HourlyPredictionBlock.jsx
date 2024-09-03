@@ -43,7 +43,7 @@ function HourlyPredictionBlock() {
           return (
             <HourlyPredictionBlockItem
               timeZone={timeZone}
-              index = {index}
+              index={index}
               item={item}
               key={index}
             />

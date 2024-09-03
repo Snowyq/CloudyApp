@@ -30,9 +30,9 @@ function Weather() {
   if (isLoading) return <p>loading...</p>;
   if (!isData) return <Loader />;
   return (
-    <div className='flex h-[calc(100svh-50px)] flex-col items-center overflow-scroll px-1 pb-2 semi-sm:px-2 sm:px-3'>
+    <div className='flex h-[calc(100svh-50px)] flex-col items-center px-1 semi-sm:px-2 sm:px-3'>
       <WeatherHeader />
-      <Grid className='w-full grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] semi-sm:auto-rows-[120px] semi-sm:grid-cols-weather-120 semi-sm:gap-2 sm:auto-rows-[125px] sm:grid-cols-weather-125 md:auto-rows-[135px] md:grid-cols-weather-135 md:gap-2 lg:auto-rows-[150px] lg:grid-cols-weather-150'>
+      <Grid className='w-full grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] pb-10 semi-sm:auto-rows-[120px] semi-sm:grid-cols-weather-120 semi-sm:gap-2 sm:auto-rows-[125px] sm:grid-cols-weather-125 md:auto-rows-[135px] md:grid-cols-weather-135 md:gap-2 lg:auto-rows-[150px] lg:grid-cols-weather-150'>
         <HourlyPredictionBlock />
         <DailyPredictionBlock />
         <AlertBlock />

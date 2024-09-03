@@ -50,7 +50,7 @@ function DailyPredictionBlockItem({ item, index, width, minMaxTemp }) {
             {item.pop != 0 ? item.pop * 100 + '%' : ''}
           </p>
         </div>
-        <div className='mr-0.5 flex w-[90%] items-center justify-end gap-0.5 text-sm semi-sm:mr-2 semi-sm:gap-2 semi-sm:text-base'>
+        <div className='mr-0.5 flex w-[90%] items-center justify-end gap-0.5 text-sm semi-sm:mr-2 semi-sm:gap-2 semi-sm:text-base sm:text-lg'>
           <ValueDisplay
             value={min}
             className='flex w-8 justify-end'

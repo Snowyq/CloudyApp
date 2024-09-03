@@ -29,7 +29,7 @@ function DailyPredictionBlock() {
       <WeatherBlockHeader>
         <p className='ml-1'>Daily Prediction</p>
       </WeatherBlockHeader>
-      <div className='mx-2 mt-2 h-[90%]'>
+      <div className='mx-2 ml-3 mt-2 h-[90%]'>
         {dailyPredictions.map((item, index) => (
           <DailyPredictionBlockItem
             item={item}

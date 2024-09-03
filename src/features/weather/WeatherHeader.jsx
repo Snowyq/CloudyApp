@@ -20,7 +20,14 @@ function WeatherHeader() {
 
   return (
     <div className='mb-0 mt-20 flex flex-col items-center justify-center gap-2 py-10'>
-      <p className='text-5xl text-neutral-300'>{locationName.split(',')[0]}</p>
+      <div className='relative'>
+        <p className='text-5xl text-neutral-300'>
+          {locationName.split(',')[0]}
+        </p>
+        <div className='absolute left-full top-1/2 ml-2 -translate-y-1/2'>
+          dodaj
+        </div>
+      </div>
 
       <div className='flex items-center justify-center gap-4'>
         <WeatherIcon
