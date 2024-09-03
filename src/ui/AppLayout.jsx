@@ -7,7 +7,10 @@ import AppContainer from './AppContainer';
 function AppLayout() {
   return (
     <div className='bg-neutral-800 text-neutral-100'>
-      <div className='relative mx-auto flex h-svh w-full max-w-[1536px] overflow-hidden bg-inherit'>
+      <div
+        className='scroll relative mx-auto flex h-svh w-full max-w-[1536px] overflow-y-scroll bg-inherit'
+        style={{ scrollbarColor: '#737373 #262626' }}
+      >
         <Sidebar />
         <AppContainer>
           <Header />

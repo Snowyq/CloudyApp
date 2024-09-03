@@ -7,7 +7,7 @@ function Header() {
   const showSidebar = useSelector(state => state.sidebar.showSidebar);
 
   return (
-    <header className='relative flex h-[50px] items-center justify-between bg-inherit px-5'>
+    <header className='sticky top-0 z-[1000] flex h-[50px] items-center justify-between bg-inherit px-5'>
       {showSidebar || <ToggleSidebarBtn />}
 
       <div className='translate absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform'>
