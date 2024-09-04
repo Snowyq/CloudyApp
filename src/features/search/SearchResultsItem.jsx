@@ -18,7 +18,7 @@ function SearchResultsItem({ result }) {
   const indexOfMatch = normalizedName
     .toLowerCase()
     .indexOf(normalizedQuery.toLowerCase());
-  //getting match string (it cant be query because it is desire to keep corectly written name)
+  //getting match string (it cant be query because it is desired to keep corectly written name)
 
   const match =
     indexOfMatch >= 0
@@ -31,11 +31,15 @@ function SearchResultsItem({ result }) {
     <div
       className='mx-1 cursor-pointer rounded py-2 pl-4 text-lg text-neutral-200 hover:bg-neutral-800'
       onMouseDown={() => {
+        console.log(result);
         dispatch(
           fetchWeather({
-            lon: result.center[0],
-            lat: result.center[1],
-            place: result.place_name,
+            position: {
+              lon: result.center[0],
+              lat: result.center[1],
+            },
+            placeName: result.place_name,
+            id: result.id,
           }),
         );
         // dispatch(hideResults());

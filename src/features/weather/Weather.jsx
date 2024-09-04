@@ -19,6 +19,8 @@ import AlertBlock from './weatherBlocks/AlertBlock';
 import DailyPredictionBlock from './weatherBlocks/DailyPredictionBlock';
 import WeatherControlPanel from './WeatherControlPanel';
 
+import { clearSavedLocations } from './weatherSlice.js';
+
 function Weather() {
   const dispatch = useDispatch();
 
@@ -27,6 +29,9 @@ function Weather() {
   }, []);
   const status = useSelector(state => state.weather.status);
   const isData = useSelector(state => state.weather.isData);
+  const saved = useSelector(state => state.weather.savedLocations);
+  console.log(saved);
+
   const isLoading = status === 'loading';
   if (isLoading) return <p>loading...</p>;
   if (!isData) return <Loader />;
@@ -34,7 +39,7 @@ function Weather() {
     <div className='flex flex-col items-center bg-neutral-800 px-1 semi-sm:px-2 sm:px-3'>
       <WeatherHeader />
       <WeatherControlPanel />
-      <Grid className='w-full grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] pb-10 semi-sm:auto-rows-[120px] semi-sm:grid-cols-weather-120 semi-sm:gap-2 sm:auto-rows-[125px] sm:grid-cols-weather-125 md:auto-rows-[135px] md:grid-cols-weather-135 md:gap-2 lg:auto-rows-[150px] lg:grid-cols-weather-150'>
+      <Grid className='w-full max-w-[1200px] grid-flow-dense auto-rows-[100px] grid-cols-weather-100 justify-center gap-[0.3rem] pb-10 semi-sm:auto-rows-[120px] semi-sm:grid-cols-weather-120 semi-sm:gap-2 sm:auto-rows-[125px] sm:grid-cols-weather-125 md:auto-rows-[135px] md:grid-cols-weather-135 md:gap-2 lg:auto-rows-[150px] lg:grid-cols-weather-150'>
         <HourlyPredictionBlock />
         <DailyPredictionBlock />
         <AlertBlock />

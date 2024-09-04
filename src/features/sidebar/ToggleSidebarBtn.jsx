@@ -9,7 +9,10 @@ function ToggleSidebarBtn({ type }) {
   return (
     <Button
       className='rounded px-2 py-1 text-2xl text-neutral-100 transition-all hover:bg-neutral-700'
-      onClick={() => dispatch(toggleSidebar())}
+      onClick={e => {
+        e.stopPropagation();
+        dispatch(toggleSidebar());
+      }}
     >
       <PiSidebar />
     </Button>

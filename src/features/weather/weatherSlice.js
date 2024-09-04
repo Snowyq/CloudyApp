@@ -7,8 +7,9 @@ import { getWeather, getWeatherMap } from '../../services/apiWeather';
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
-  async function ({ lon, lat, place }) {
-    const position = { lon, lat };
+  async function ({ position, placeName, id, saved }) {
+    console.log(placeName, id, saved);
+    // const position = { lon, lat };
     // 1) We get the user's geolocation position
     // const positionObj = await getPosition();
     // const position = {
@@ -19,9 +20,20 @@ export const fetchWeather = createAsyncThunk(
     const weatherData = await getWeather(position);
     // const weatherMap = await getWeatherMap(position, 'precipitation_new', 6);
     // 3) Then we return an object with the data that we are interested in
-    return { position, weatherData, place };
+    return { position, weatherData, placeName, id, saved };
   },
 );
+
+function loadStateFromStorage() {
+  try {
+    const savedLocations = localStorage.getItem('savedLocations');
+    if (!savedLocations) return [];
+    return JSON.parse(savedLocations);
+  } catch (err) {
+    // throw new Error('Could not load savedLocations');
+    return [];
+  }
+}
 
 const initialState = {
   dataTime: null,
@@ -32,13 +44,37 @@ const initialState = {
   error: '',
   status: 'idle',
   isData: false,
-  location: { place: '', position: {} },
+  location: { placeName: '', position: {}, id: null, saved: false },
+  savedLocations: loadStateFromStorage() || [],
 };
 
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {},
+  reducers: {
+    addSavedLocation(state, action) {
+      const isAdded = state.savedLocations.find(
+        item => item.id == action.payload.id,
+      );
+      if (isAdded) return;
+      state.location.saved = true;
+      state.savedLocations = [
+        ...state.savedLocations,
+        { ...action.payload, save: true },
+      ];
+    },
+    removeSavedLocation(state, action) {
+      if (state.location.id === action.payload) {
+        state.location.saved = false;
+      }
+      state.savedLocations = state.savedLocations.filter(
+        item => item.id !== action.payload,
+      );
+    },
+    clearSavedLocations(state) {
+      state.savedLocations = [];
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(fetchWeather.pending, state => {
@@ -50,7 +86,13 @@ const weatherSlice = createSlice({
         state.status = 'idle';
         state.isData = true;
         state.location.position = action.payload.position;
-        state.location.place = action.payload.place;
+        state.location.placeName = action.payload.placeName;
+        state.location.id = action.payload.id;
+        state.location.saved = state.savedLocations.find(
+          item => item.id === action.payload.id,
+        )
+          ? true
+          : false;
       })
       .addCase(fetchWeather.rejected, state => {
         state.status = 'error';
@@ -58,6 +100,9 @@ const weatherSlice = createSlice({
           'There was a problem getting your address. Make sure to fill this field';
       }),
 });
+
+export const { addSavedLocation, removeSavedLocation, clearSavedLocations } =
+  weatherSlice.actions;
 
 export default weatherSlice.reducer;
 
@@ -96,4 +141,4 @@ export const getTodayPredictionTemp = state =>
   state.weather.weatherData.daily[0].temp;
 export const getTodayPredictionFeelsLike = state =>
   state.weather.weatherData.daily[0].feels_like;
-export const getLocationName = state => state.weather.location.place;
+export const getLocationName = state => state.weather.location.placeName;
