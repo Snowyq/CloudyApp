@@ -5,7 +5,7 @@ function AppContainer({ children }) {
 
   return (
     <div
-      className={`z-50 h-full w-full ${showSidebar ? 'lg:ml-[300px]' : 'lg:ml-0'} bg-inherit transition-all`}
+      className={`z-50 h-full w-full ${showSidebar ? 'lg:ml-[300px]' : 'lg:ml-0'} relative bg-inherit bg-neutral-800 transition-all`}
     >
       {children}
     </div>

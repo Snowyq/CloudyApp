@@ -14,7 +14,6 @@ function DailyPredictionBlockItem({ item, index, width, minMaxTemp }) {
     distanceBetweenValues(globalMin, min) * procentPerUnit;
   const max = item.temp.max;
   const amplitudeWidth = distanceBetweenValues(min, max) * procentPerUnit;
-  console.log(currTemp, min, max);
 
   const currTempPosition =
     distanceBetweenValues(globalMin, currTemp) * procentPerUnit;

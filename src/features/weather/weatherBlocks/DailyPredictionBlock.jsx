@@ -10,8 +10,6 @@ function DailyPredictionBlock() {
 
   const temperatureAmplitudePoints = dailyPredictions.reduce(
     (acc, curr, index) => {
-      console.log(acc);
-      console.log(curr);
       return {
         min: Math.min(acc.min, curr.temp.min),
         max: Math.max(acc.max, curr.temp.max),
@@ -19,8 +17,6 @@ function DailyPredictionBlock() {
     },
     { min: dailyPredictions[0].temp.min, max: dailyPredictions[0].temp.max },
   );
-
-  console.log(temperatureAmplitudePoints);
 
   if (!dailyPredictions) return null;
 

@@ -1,4 +1,6 @@
 import { WiCloudy, WiThermometer } from 'react-icons/wi';
+import { FiPlusCircle } from 'react-icons/fi';
+
 import { useSelector } from 'react-redux';
 import {
   getCurrentWeather,
@@ -24,9 +26,9 @@ function WeatherHeader() {
         <p className='text-5xl text-neutral-300'>
           {locationName.split(',')[0]}
         </p>
-        <div className='absolute left-full top-1/2 ml-2 -translate-y-1/2'>
-          dodaj
-        </div>
+        {/* <div className='absolute left-full top-1/2 ml-2 -translate-y-1/2'>
+          <FiPlusCircle className='text-2xl text-neutral-500' />
+        </div> */}
       </div>
 
       <div className='flex items-center justify-center gap-4'>
