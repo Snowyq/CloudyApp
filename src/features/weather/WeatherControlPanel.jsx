@@ -1,18 +1,32 @@
 import { FiPlusCircle } from 'react-icons/fi';
 import Button from '../../ui/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSavedLocation, removeSavedLocation } from './weatherSlice';
 
 function WeatherControlPanel() {
   const dataTime = useSelector(state => state.weather.dataTime);
   console.log(dataTime);
+  const location = useSelector(state => state.weather.location);
+  const dispatch = useDispatch();
+  console.log(location.saved);
+
+  function handleAddLocationBtn() {
+    if (location.saved) dispatch(removeSavedLocation(location.id));
+    if (!location.saved) dispatch(addSavedLocation(location));
+  }
 
   return (
-    <div className='grid w-full grid-flow-dense grid-cols-weather-100 justify-center gap-[0.3rem] pb-2 semi-sm:grid-cols-weather-120 semi-sm:gap-2 sm:grid-cols-weather-125 md:grid-cols-weather-135 md:gap-2 lg:grid-cols-weather-150'>
+    <div className='grid w-full max-w-[1200px] grid-flow-dense grid-cols-weather-100 justify-center gap-[0.3rem] pb-2 semi-sm:grid-cols-weather-120 semi-sm:gap-2 sm:grid-cols-weather-125 md:grid-cols-weather-135 md:gap-2 lg:grid-cols-weather-150'>
       <div className='col-span-full flex justify-between'>
         <div>
-          <Button className='group flex items-center gap-1 text-neutral-400 hover:text-neutral-200'>
+          <Button
+            onClick={() => handleAddLocationBtn()}
+            className='group flex items-center gap-1 text-neutral-400 hover:text-neutral-200'
+          >
             <FiPlusCircle className='text-2xl transition-all' />
-            <p className='origin-left transition-all'>add location</p>
+            <p className='origin-left transition-all'>
+              add location {String(location.saved)}
+            </p>
           </Button>
         </div>
         <div className='flex'>

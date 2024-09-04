@@ -27,9 +27,12 @@ function SearchLocation() {
     if (!results) return;
     dispatch(
       fetchWeather({
-        lon: results[0].center[0],
-        lat: results[0].center[1],
-        place: results[0].place_name,
+        position: {
+          lon: results[0].center[0],
+          lat: results[0].center[1],
+        },
+        placeName: results[0].place_name,
+        id: results[0].id,
       }),
     );
     dispatch(hideResults());

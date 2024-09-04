@@ -3,8 +3,16 @@ import Sidebar from '../features/sidebar/Sidebar';
 import Header from './Header';
 import Main from './Main';
 import AppContainer from './AppContainer';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeSidebar } from '../features/sidebar/sidebarSlice';
 
 function AppLayout() {
+  const dispatch = useDispatch();
+
+  function handleClickOutsideSidebar() {
+    dispatch(closeSidebar());
+  }
+
   return (
     <div className='bg-neutral-800 text-neutral-100'>
       <div
@@ -12,7 +20,7 @@ function AppLayout() {
         style={{ scrollbarColor: '#737373 #262626' }}
       >
         <Sidebar />
-        <AppContainer>
+        <AppContainer onClick={handleClickOutsideSidebar}>
           <Header />
           <Main>
             <Outlet />
