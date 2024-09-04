@@ -24,6 +24,7 @@ export const fetchWeather = createAsyncThunk(
 );
 
 const initialState = {
+  dataTime: null,
   weatherData: {
     hourly: [],
     daily: [],
@@ -44,6 +45,7 @@ const weatherSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
+        state.dataTime = new Date().toISOString();
         state.weatherData = action.payload.weatherData;
         state.status = 'idle';
         state.isData = true;

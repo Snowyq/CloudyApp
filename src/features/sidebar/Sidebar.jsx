@@ -9,10 +9,10 @@ function Sidebar() {
 
   return (
     <div
-      className={`${showSidebar ? 'translate-x-0' : '-translate-x-[100%]'} absolute z-[100] flex h-full w-[300px] transform flex-col bg-neutral-900 px-5 transition-all lg:z-0 lg:transform-none 2xl:rounded-l-lg`}
+      className={`${showSidebar ? 'transalte-x-0' : '-translate-x-[100%]'} fixed bottom-0 left-0 top-0 z-[100] flex h-full w-[300px] transform flex-col bg-neutral-900 px-5 transition-all lg:z-[0] lg:transform-none`}
     >
       {/* bar */}
-      <div className='flex h-[50px] items-center'>
+      <div className='z-10 flex h-[50px] items-center'>
         {showSidebar && <ToggleSidebarBtn />}
       </div>
 
