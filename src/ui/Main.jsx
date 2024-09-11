@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
 
-useSelector;
-
 function Main({ children, className }) {
-  return <main className=''>{children}</main>;
+  const showSidebar = useSelector(state => state.sidebar.showSidebar);
+
+  return (
+    // <main className={`${showSidebar ? 'w-[calc(100%-300px)]' : 'w-full'}`}>
+    <main>{children}</main>
+  );
 }
 
 export default Main;

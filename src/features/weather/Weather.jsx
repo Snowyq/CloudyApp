@@ -20,13 +20,15 @@ import DailyPredictionBlock from './weatherBlocks/DailyPredictionBlock';
 import WeatherControlPanel from './WeatherControlPanel';
 
 import { clearSavedLocations } from './weatherSlice.js';
+import { searchLocationById } from '../../services/apiGeocoding.js';
+import store from '../../store';
 
 function Weather() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchWeather());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchWeather());
+  // }, []);
   const status = useSelector(state => state.weather.status);
   const isData = useSelector(state => state.weather.isData);
   const saved = useSelector(state => state.weather.savedLocations);
@@ -65,9 +67,22 @@ function Weather() {
   // );
 }
 
-export async function loader() {
-  // const { weatherData } = dispatch(fetchWeather());
-  // console.log(weatherData);
+export async function loader({ params }) {
+  console.log(params);
+  console.log(params.locationId);
+  const location = await searchLocationById(params.locationId);
+  console.log(location);
+
+  store.dispatch(
+    fetchWeather({
+      position: {
+        lon: location.center[0],
+        lat: location.center[1],
+      },
+      placeName: location.place_name,
+      id: location.id,
+    }),
+  );
   return null;
 }
 

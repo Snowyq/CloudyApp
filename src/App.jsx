@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <AppStart />,
       },
       {
-        path: '/app/weather/current/:locationName/:locationId',
+        path: '/app/weather/current/:locationId',
         element: <Weather />,
         loader: weatherLoader,
       },

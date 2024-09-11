@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchResults, hideResults } from './searchSlice';
 import { fetchWeather } from '../weather/weatherSlice';
 import SearchLoading from '../../ui/SearchLoading';
+import { useNavigate } from 'react-router-dom';
 
 function SearchLocation() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { results, status, showResults } = useSelector(state => state.search);
   const isResults = results && showResults;
   const isLoading = status === 'loading';
@@ -24,19 +27,24 @@ function SearchLocation() {
 
   function handleSearchSubmit(e) {
     e.preventDefault();
+
     if (!results) return;
-    dispatch(
-      fetchWeather({
-        position: {
-          lon: results[0].center[0],
-          lat: results[0].center[1],
-        },
-        placeName: results[0].place_name,
-        id: results[0].id,
-      }),
-    );
-    dispatch(hideResults());
-    setQuery('');
+    // const [locationType, locationId] = results[0].id.split('.');
+    // console.log(locationType, locationId);
+    // navigate(`app/weather/current/${locationType}/${locationId}`);
+    navigate(`app/weather/current/${results[0].id}`);
+    // dispatch(
+    //   fetchWeather({
+    //     position: {
+    //       lon: results[0].center[0],
+    //       lat: results[0].center[1],
+    //     },
+    //     placeName: results[0].place_name,
+    //     id: results[0].id,
+    //   }),
+    // );
+    // dispatch(hideResults());
+    // setQuery('');
   }
 
   function handleSearchBlur() {
