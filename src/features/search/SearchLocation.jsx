@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PiMagnifyingGlass } from 'react-icons/pi';
 import SearchResults from './SearchResults';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,11 +11,14 @@ function SearchLocation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const inputRef = useRef(null);
+
   const { results, status, showResults } = useSelector(state => state.search);
-  const isResults = results && showResults;
-  const isLoading = status === 'loading';
 
   const [query, setQuery] = useState('');
+
+  const isResults = results && showResults;
+  const isLoading = status === 'loading';
 
   useEffect(() => {
     if (query.length >= 3) {
@@ -43,8 +46,9 @@ function SearchLocation() {
     //     id: results[0].id,
     //   }),
     // );
-    // dispatch(hideResults());
-    // setQuery('');
+    dispatch(hideResults());
+    setQuery('');
+    if (inputRef.current) inputRef.current.blur();
   }
 
   function handleSearchBlur() {
@@ -56,10 +60,11 @@ function SearchLocation() {
     <div className='relative z-[1000] flex flex-col transition-all'>
       <form
         onSubmit={handleSearchSubmit}
-        className='z-30 flex w-40 items-center rounded-full border-2 border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-96 sm:w-52 md:w-60 lg:w-72 xl:w-96'
+        className='z-30 flex w-40 items-center rounded-full border-2 border-neutral-700 bg-neutral-800 pl-2 transition-all has-[:focus]:w-60 has-[:focus]:scale-105 sm:w-52 sm:has-[:focus]:w-72 md:w-60 md:has-[:focus]:w-96 lg:w-72 xl:w-96'
       >
         <PiMagnifyingGlass className='z-10 text-neutral-300' />
         <input
+          ref={inputRef}
           onChange={e => setQuery(e.target.value)}
           value={query}
           onBlur={handleSearchBlur}
@@ -68,7 +73,7 @@ function SearchLocation() {
           placeholder='search location'
         />
       </form>
-      {isLoading && <SearchLoading />}
+      {/* {isLoading && <SearchLoading />} */}
       {isResults && <SearchResults />}
     </div>
   );

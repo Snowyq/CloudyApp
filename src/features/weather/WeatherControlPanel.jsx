@@ -1,4 +1,4 @@
-import { FiPlusCircle } from 'react-icons/fi';
+import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import Button from '../../ui/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSavedLocation, removeSavedLocation } from './weatherSlice';
@@ -23,13 +23,17 @@ function WeatherControlPanel() {
             onClick={() => handleAddLocationBtn()}
             className='group flex items-center gap-1 text-neutral-400 hover:text-neutral-200'
           >
-            <FiPlusCircle className='text-2xl transition-all' />
+            {location.saved ? (
+              <FiMinusCircle className='text-2xl transition-all' />
+            ) : (
+              <FiPlusCircle className='text-2xl transition-all' />
+            )}
             <p className='origin-left transition-all'>
-              add location {String(location.saved)}
+              {location.saved ? 'remove location' : 'save location'}
             </p>
           </Button>
         </div>
-        <div className='flex'>
+        {/* <div className='flex'>
           <p>refreshed:</p>
           <p>
             {new Date(dataTime).toLocaleTimeString('pl-PL', {
@@ -37,7 +41,7 @@ function WeatherControlPanel() {
               minute: '2-digit',
             })}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

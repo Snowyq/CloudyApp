@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import { fetchWeather, removeSavedLocation } from '../weather/weatherSlice';
 import { closeSidebar } from './sidebarSlice';
+import { useNavigate } from 'react-router-dom';
 
 function LocationsItem({ edit }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const savedLocations = useSelector(state => state.weather.savedLocations);
   console.log(savedLocations);
@@ -14,8 +16,8 @@ function LocationsItem({ edit }) {
   }
 
   function handleLocationClick(location) {
-    console.log(location);
-    dispatch(fetchWeather(location));
+    navigate(`app/weather/current/${location.id}`);
+
     dispatch(closeSidebar());
   }
 
@@ -32,7 +34,11 @@ function LocationsItem({ edit }) {
           >
             <div>
               <span className='font-semibold text-neutral-100'>{name}</span>
-              <span className='text-sm text-neutral-400'>{`,` + nameRest}</span>
+              {nameRest[0] ? (
+                <span className='text-sm text-neutral-400'>
+                  {`,` + nameRest}
+                </span>
+              ) : null}
             </div>
             {edit ? (
               <Button

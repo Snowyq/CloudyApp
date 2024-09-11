@@ -52,7 +52,7 @@ function Weather() {
         <CloudsBlock />
         <VisibilityBlock />
         <MapBlock />
-        <RainBlock />
+        {/* <RainBlock /> */}
         <UviBlock />
       </Grid>
     </div>
