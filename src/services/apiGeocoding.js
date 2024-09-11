@@ -26,3 +26,14 @@ export async function SearchCityByName(query, signal) {
     if (err.name === 'AbortError') throw new Error();
   }
 }
+
+export async function searchLocationById(id) {
+  try {
+    const res = await fetch(`${API_URL}/${id}.json?key=${API_KEY}`);
+    const data = await res.json();
+    const location = data.features[0];
+    return location;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}

@@ -1,9 +1,11 @@
 import { fetchWeather } from '../weather/weatherSlice';
 import { removeDiacritics } from '../../utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function SearchResultsItem({ result }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const query = useSelector(state => state.search.query);
 
   // breaking place_name to make better UI
@@ -32,16 +34,17 @@ function SearchResultsItem({ result }) {
       className='mx-1 cursor-pointer rounded py-2 pl-4 text-lg text-neutral-200 hover:bg-neutral-800'
       onMouseDown={() => {
         console.log(result);
-        dispatch(
-          fetchWeather({
-            position: {
-              lon: result.center[0],
-              lat: result.center[1],
-            },
-            placeName: result.place_name,
-            id: result.id,
-          }),
-        );
+        navigate(`app/weather/current/${result.id}`);
+        // dispatch(
+        //   fetchWeather({
+        //     position: {
+        //       lon: result.center[0],
+        //       lat: result.center[1],
+        //     },
+        //     placeName: result.place_name,
+        //     id: result.id,
+        //   }),
+        // );
         // dispatch(hideResults());
       }}
     >

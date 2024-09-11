@@ -34,7 +34,7 @@ function WeatherHeader() {
       <div className='flex items-center justify-center gap-4'>
         <WeatherIcon
           iconId={weather.icon}
-          className='m-0 h-[120px] w-[120px] p-0 text-neutral-300'
+          className='m-0 mt-2 h-[120px] w-[120px] p-0 text-neutral-300'
         />
 
         <div className='flex flex-col items-start justify-center'>

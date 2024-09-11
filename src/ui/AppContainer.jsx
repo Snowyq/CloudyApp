@@ -5,7 +5,7 @@ function AppContainer({ children, onClick }) {
 
   return (
     <div
-      className={`z-50 h-full w-full ${showSidebar ? 'lg:ml-[300px]' : 'lg:ml-0'} relative bg-inherit bg-neutral-800 transition-all`}
+      className={`z-50 h-full ${showSidebar ? 'w-[calc(100%-300px)] lg:ml-[300px]' : 'w-full lg:ml-0'} relative bg-inherit bg-neutral-800 transition-all`}
       onClick={onClick}
     >
       {children}
