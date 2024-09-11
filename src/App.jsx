@@ -7,17 +7,17 @@ import AppStart from './ui/AppStart';
 import Weather, { loader as weatherLoader } from './features/weather/Weather';
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-  },
+  // {
+  //   path: '',
+  //   // element: <Home />,
+  // },
   {
     element: <AppLayout />,
     // errorElement: <Error />,
 
     children: [
       {
-        path: '/app',
+        path: '/',
         element: <AppStart />,
       },
       {

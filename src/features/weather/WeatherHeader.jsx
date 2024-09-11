@@ -41,11 +41,11 @@ function WeatherHeader() {
           <p className='text-lg leading-normal text-neutral-400'>
             {weather.description}
           </p>
-          <div className='relative flex items-center justify-center'>
+          <div className='relatived -ml-1 flex items-center justify-center'>
             {/* <WiThermometer className='text-4xl' /> */}
             <ValueDisplay value={temp} size='5xl' font='semibold' />
           </div>
-          <div className='mt-1 flex w-full items-center justify-center gap-1'>
+          <div className='mt-1 flex w-full items-center justify-start gap-1'>
             <ValueDisplay
               value={tempPrediciton.min}
               size='sm'
