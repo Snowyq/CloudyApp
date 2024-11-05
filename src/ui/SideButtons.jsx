@@ -2,7 +2,7 @@ import {
   MdOutlineArrowBackIosNew,
   MdOutlineArrowForwardIos,
 } from 'react-icons/md';
-import AbsoluteCenter from './AbsoluteCenter';
+
 import Button from './Button';
 
 function SideButtons({ onRightArrowClick, onLeftArrowClick }) {

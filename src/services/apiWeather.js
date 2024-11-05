@@ -1,5 +1,4 @@
 import { WEATHER_API_KEY } from '../config';
-import fakeWeather from './fakeWeather';
 const API_URL = 'https://api.openweathermap.org';
 const API_MAP_URL = 'https://tile.openweathermap.org';
 const API_KEY = `&appid=${WEATHER_API_KEY}`;

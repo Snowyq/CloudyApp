@@ -9,7 +9,6 @@ export function removeDiacritics(str) {
 export function calculatePointsOnCircle({
   pointsNum,
   width,
-  height,
   outerRadius,
   innerRadius = outerRadius,
   initialDeg,

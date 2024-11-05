@@ -9,7 +9,7 @@ function DailyPredictionBlock() {
   );
 
   const temperatureAmplitudePoints = dailyPredictions.reduce(
-    (acc, curr, index) => {
+    (acc, curr) => {
       return {
         min: Math.min(acc.min, curr.temp.min),
         max: Math.max(acc.max, curr.temp.max),

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import SearchLocation from '../features/search/SearchLocation';
-import Time from './Time';
 import ToggleSidebarBtn from '../features/sidebar/ToggleSidebarBtn';
 
 function Header() {

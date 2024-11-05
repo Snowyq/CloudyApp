@@ -4,10 +4,7 @@ import WeatherBlock from './WeatherBlock';
 import { useSelector } from 'react-redux';
 import { getCurrentWeather } from '../weatherSlice';
 import WindDirection from '../../../ui/WindDirection';
-import {
-  convertMsToKmh,
-  calculatePointsOnCircle,
-} from '../../../utils/helpers';
+
 import ValueDisplay from '../../../ui/ValueDisplay';
 
 function WindBlock() {

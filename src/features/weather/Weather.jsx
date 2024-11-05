@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchWeather } from './weatherSlice';
-import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+// import { fetchWeather } from './weatherSlice';
+
 import Grid from '../../ui/Grid';
 import WeatherHeader from './WeatherHeader';
-import WeatherBlock from './weatherBlocks/WeatherBlock';
+
 import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
 import PressureBlock from './weatherBlocks/PressureBlock';
 import HourlyPredictionBlock from './weatherBlocks/HourlyPredictionBlock';
@@ -13,26 +13,17 @@ import HumidityBlock from './weatherBlocks/HumidityBlock';
 import CloudsBlock from './weatherBlocks/CloudsBlock';
 import VisibilityBlock from './weatherBlocks/VisibilityBlock';
 import MapBlock from './weatherBlocks/MapBlock';
-import RainBlock from './weatherBlocks/RainBlock';
 import UviBlock from './weatherBlocks/UviBlock';
 import AlertBlock from './weatherBlocks/AlertBlock';
 import DailyPredictionBlock from './weatherBlocks/DailyPredictionBlock';
 import WeatherControlPanel from './WeatherControlPanel';
 
-import { clearSavedLocations } from './weatherSlice.js';
-import { searchLocationById } from '../../services/apiGeocoding.js';
-import store from '../../store';
+// import { searchLocationById } from '../../services/apiGeocoding.js';
+// import store from '../../store';
 
 function Weather() {
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchWeather());
-  // }, []);
   const status = useSelector(state => state.weather.status);
   const isData = useSelector(state => state.weather.isData);
-  const saved = useSelector(state => state.weather.savedLocations);
-  console.log(saved);
 
   const isLoading = status === 'loading';
   if (isLoading) return <p>loading...</p>;
@@ -52,38 +43,29 @@ function Weather() {
         <CloudsBlock />
         <VisibilityBlock />
         <MapBlock />
-        {/* <RainBlock /> */}
         <UviBlock />
       </Grid>
     </div>
   );
-
-  // return (
-  //   <div
-  //     className='semi-sm:grid-cols-3 grid grid-flow-dense auto-rows-[10rem] grid-cols-2 justify-center gap-2 p-5 transition-all duration-1000 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7'
-  //   >
-  //     {isLoading ? <p>loading...</p> : <GeneralWeatherBlock />}
-  //   </div>
-  // );
 }
 
-export async function loader({ params }) {
-  console.log(params);
-  console.log(params.locationId);
-  const location = await searchLocationById(params.locationId);
-  console.log(location);
+// export async function loader({ params }) {
+//   console.log(params);
+//   console.log(params.locationId);
+//   const location = await searchLocationById(params.locationId);
+//   console.log(location);
 
-  store.dispatch(
-    fetchWeather({
-      position: {
-        lon: location.center[0],
-        lat: location.center[1],
-      },
-      placeName: location.place_name,
-      id: location.id,
-    }),
-  );
-  return null;
-}
+//   store.dispatch(
+//     fetchWeather({
+//       position: {
+//         lon: location.center[0],
+//         lat: location.center[1],
+//       },
+//       placeName: location.place_name,
+//       id: location.id,
+//     }),
+//   );
+//   return null;
+// }
 
 export default Weather;

@@ -3,7 +3,7 @@ import Sidebar from '../features/sidebar/Sidebar';
 import Header from './Header';
 import Main from './Main';
 import AppContainer from './AppContainer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { closeSidebar } from '../features/sidebar/sidebarSlice';
 
 function AppLayout() {

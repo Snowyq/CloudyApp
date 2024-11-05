@@ -1,8 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 // import { WEATHER_API_KEY } from './config';
 import AppLayout from './ui/AppLayout';
-import Error from './ui/Error';
-import Home from './ui/Home';
 import AppStart from './ui/AppStart';
 import Weather, { loader as weatherLoader } from './features/weather/Weather';
 

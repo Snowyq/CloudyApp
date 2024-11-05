@@ -4,11 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addSavedLocation, removeSavedLocation } from './weatherSlice';
 
 function WeatherControlPanel() {
-  const dataTime = useSelector(state => state.weather.dataTime);
-  console.log(dataTime);
   const location = useSelector(state => state.weather.location);
   const dispatch = useDispatch();
-  console.log(location.saved);
 
   function handleAddLocationBtn() {
     if (location.saved) dispatch(removeSavedLocation(location.id));
@@ -33,15 +30,6 @@ function WeatherControlPanel() {
             </p>
           </Button>
         </div>
-        {/* <div className='flex'>
-          <p>refreshed:</p>
-          <p>
-            {new Date(dataTime).toLocaleTimeString('pl-PL', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
-          </p>
-        </div> */}
       </div>
     </div>
   );

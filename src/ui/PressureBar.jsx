@@ -1,6 +1,5 @@
 import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
 import { calculatePointsOnCircle } from '../utils/helpers';
-import ValueDisplay from './ValueDisplay';
 
 function PressureBar({
   value,

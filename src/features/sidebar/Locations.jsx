@@ -2,7 +2,6 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import LocationsItem from './LocationsItem';
-import { useState } from 'react';
 import { toggleLocationsEdit } from './sidebarSlice';
 
 function Locations() {
