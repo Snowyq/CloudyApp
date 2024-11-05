@@ -3,8 +3,6 @@ import { PiMagnifyingGlass } from 'react-icons/pi';
 import SearchResults from './SearchResults';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchResults, hideResults } from './searchSlice';
-import { fetchWeather } from '../weather/weatherSlice';
-import SearchLoading from '../../ui/SearchLoading';
 import { useNavigate } from 'react-router-dom';
 
 function SearchLocation() {
@@ -13,13 +11,11 @@ function SearchLocation() {
 
   const inputRef = useRef(null);
 
-  const { results, status, showResults } = useSelector(state => state.search);
+  const { results, showResults } = useSelector(state => state.search);
 
   const [query, setQuery] = useState('');
 
   const isResults = results && showResults;
-  const isLoading = status === 'loading';
-
   useEffect(() => {
     if (query.length >= 3) {
       dispatch(fetchResults(query));

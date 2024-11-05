@@ -1,5 +1,3 @@
-import AbsoluteCenter from './AbsoluteCenter';
-
 function CarouselItems({ children, className, style, CarouselItemWidth }) {
   return (
     <div className={`w-full ${className}`} style={style}>

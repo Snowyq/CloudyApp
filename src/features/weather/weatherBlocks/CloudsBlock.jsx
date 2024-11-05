@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import WeatherBlock from './WeatherBlock';
-import { WiCloud, WiCloudy } from 'react-icons/wi';
+import { WiCloudy } from 'react-icons/wi';
 import ValueDisplay from '../../../ui/ValueDisplay';
 
 function CloudsBlock() {

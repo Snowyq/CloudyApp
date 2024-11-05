@@ -51,7 +51,7 @@ const searchSlice = createSlice({
         state.status = 'idle';
         state.isData = true;
       })
-      .addCase(fetchResults.rejected, (state, action) => {
+      .addCase(fetchResults.rejected, state => {
         state.status = 'error';
         state.error =
           'There was a problem getting your address. Make sure to fill this field';

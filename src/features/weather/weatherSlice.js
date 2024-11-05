@@ -3,7 +3,7 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import { getWeather, getWeatherMap } from '../../services/apiWeather';
+import { getWeather } from '../../services/apiWeather';
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',

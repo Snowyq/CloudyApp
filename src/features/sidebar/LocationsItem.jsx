@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
-import { fetchWeather, removeSavedLocation } from '../weather/weatherSlice';
+import { removeSavedLocation } from '../weather/weatherSlice';
 import { closeSidebar } from './sidebarSlice';
 import { useNavigate } from 'react-router-dom';
 

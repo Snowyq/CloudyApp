@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
-function Main({ children, className }) {
-  const showSidebar = useSelector(state => state.sidebar.showSidebar);
+function Main({ children }) {
+  // const showSidebar = useSelector(state => state.sidebar.showSidebar);
 
   return (
     // <main className={`${showSidebar ? 'w-[calc(100%-300px)]' : 'w-full'}`}>

@@ -1,4 +1,4 @@
-import { PiArrowFatUp, PiArrowFatUpFill, PiLineVertical } from 'react-icons/pi';
+import { PiArrowFatUpFill } from 'react-icons/pi';
 import { calculatePointsOnCircle } from '../utils/helpers';
 
 function WindDirection({ windDeg, className }) {

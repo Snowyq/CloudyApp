@@ -1,14 +1,12 @@
 import WeatherBlock from './WeatherBlock';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { useSelector } from 'react-redux';
-import { getCurrentWeather } from '../weatherSlice';
 import WeatherBlockCarousel from '../../../ui/Carousel';
-import { GoAlert, GoAlertFill } from 'react-icons/go';
+import { GoAlertFill } from 'react-icons/go';
 import { FiAlertCircle } from 'react-icons/fi';
 
 function AlertBlock() {
   const alerts = useSelector(state => state.weather.weatherData.alerts);
-  const current = useSelector(getCurrentWeather);
 
   function showTime(time) {
     const dateOptions = { hour: 'numeric', minute: 'numeric' };

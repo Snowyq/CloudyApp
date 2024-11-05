@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import WeatherIcon from '../../../ui/WeatherIcon';
 

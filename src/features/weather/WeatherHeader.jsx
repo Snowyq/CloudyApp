@@ -1,6 +1,3 @@
-import { WiCloudy, WiThermometer } from 'react-icons/wi';
-import { FiPlusCircle } from 'react-icons/fi';
-
 import { useSelector } from 'react-redux';
 import {
   getCurrentWeather,

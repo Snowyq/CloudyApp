@@ -1,10 +1,8 @@
-import { fetchWeather } from '../weather/weatherSlice';
 import { removeDiacritics } from '../../utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function SearchResultsItem({ result }) {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const query = useSelector(state => state.search.query);
 

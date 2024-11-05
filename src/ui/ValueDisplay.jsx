@@ -12,7 +12,6 @@ function ValueDisplay({
   textFont = 'normal',
   textColor = 'neutral-400',
   fixed = '1',
-  noValue = '',
   className = '',
   type = '',
 }) {
