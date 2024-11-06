@@ -24,17 +24,6 @@ export const fetchWeather = createAsyncThunk(
   },
 );
 
-function loadStateFromStorage() {
-  try {
-    const savedLocations = localStorage.getItem('savedLocations');
-    if (!savedLocations) return [];
-    return JSON.parse(savedLocations);
-  } catch (err) {
-    // throw new Error('Could not load savedLocations');
-    return [];
-  }
-}
-
 const initialState = {
   dataTime: null,
   weatherData: {
@@ -45,36 +34,12 @@ const initialState = {
   status: 'idle',
   isData: false,
   location: { placeName: '', position: {}, id: null, saved: false },
-  savedLocations: loadStateFromStorage() || [],
 };
 
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {
-    addSavedLocation(state, action) {
-      const isAdded = state.savedLocations.find(
-        item => item.id == action.payload.id,
-      );
-      if (isAdded) return;
-      state.location.saved = true;
-      state.savedLocations = [
-        ...state.savedLocations,
-        { ...action.payload, save: true },
-      ];
-    },
-    removeSavedLocation(state, action) {
-      if (state.location.id === action.payload) {
-        state.location.saved = false;
-      }
-      state.savedLocations = state.savedLocations.filter(
-        item => item.id !== action.payload,
-      );
-    },
-    clearSavedLocations(state) {
-      state.savedLocations = [];
-    },
-  },
+  reducers: {},
   extraReducers: builder =>
     builder
       .addCase(fetchWeather.pending, state => {
@@ -88,11 +53,6 @@ const weatherSlice = createSlice({
         state.location.position = action.payload.position;
         state.location.placeName = action.payload.placeName;
         state.location.id = action.payload.id;
-        state.location.saved = state.savedLocations.find(
-          item => item.id === action.payload.id,
-        )
-          ? true
-          : false;
       })
       .addCase(fetchWeather.rejected, state => {
         state.status = 'error';
@@ -100,9 +60,6 @@ const weatherSlice = createSlice({
           'There was a problem getting your address. Make sure to fill this field';
       }),
 });
-
-export const { addSavedLocation, removeSavedLocation, clearSavedLocations } =
-  weatherSlice.actions;
 
 export default weatherSlice.reducer;
 
@@ -142,3 +99,5 @@ export const getTodayPredictionTemp = state =>
 export const getTodayPredictionFeelsLike = state =>
   state.weather.weatherData.daily[0].feels_like;
 export const getLocationName = state => state.weather.location.placeName;
+
+export const getWeatherLocation = state => state.weather.location;

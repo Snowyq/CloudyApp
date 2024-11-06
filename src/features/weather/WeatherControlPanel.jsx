@@ -1,15 +1,24 @@
 import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import Button from '../../ui/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSavedLocation, removeSavedLocation } from './weatherSlice';
+import {
+  addLocation,
+  getLocations,
+  removeLocation,
+} from '../locations/locationsSlice';
+import { getWeatherLocation } from './weatherSlice';
 
 function WeatherControlPanel() {
-  const location = useSelector(state => state.weather.location);
+  const weatherLocation = useSelector(getWeatherLocation);
   const dispatch = useDispatch();
+  const { savedLocations } = useSelector(getLocations);
+  const isSavedLocation = savedLocations.find(
+    location => location.id === weatherLocation.id,
+  );
 
   function handleAddLocationBtn() {
-    if (location.saved) dispatch(removeSavedLocation(location.id));
-    if (!location.saved) dispatch(addSavedLocation(location));
+    if (isSavedLocation) dispatch(removeLocation(weatherLocation.id));
+    else dispatch(addLocation(weatherLocation));
   }
 
   return (
@@ -20,13 +29,13 @@ function WeatherControlPanel() {
             onClick={() => handleAddLocationBtn()}
             className='group flex items-center gap-1 text-neutral-400 hover:text-neutral-200'
           >
-            {location.saved ? (
+            {isSavedLocation ? (
               <FiMinusCircle className='text-2xl transition-all' />
             ) : (
               <FiPlusCircle className='text-2xl transition-all' />
             )}
             <p className='origin-left transition-all'>
-              {location.saved ? 'remove location' : 'save location'}
+              {isSavedLocation ? 'remove location' : 'save location'}
             </p>
           </Button>
         </div>

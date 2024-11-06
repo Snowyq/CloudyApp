@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   showSidebar: false,
-  locationsEdit: false,
+  locations: {
+    isEditting: false,
+  },
 };
 
 const sidebarSlice = createSlice({
@@ -11,24 +13,24 @@ const sidebarSlice = createSlice({
   reducers: {
     toggleSidebar(state) {
       state.showSidebar = !state.showSidebar;
-      state.locationsEdit = false;
+      state.locations.isEditting = false;
     },
     showSidebar(state) {
       state.showSidebar = true;
-      state.locationsEdit = false;
+      state.locations.isEditting = false;
     },
     closeSidebar(state) {
       state.showSidebar = false;
-      state.locationsEdit = false;
+      state.locations.isEditting = false;
     },
-    toggleLocationsEdit(state) {
-      state.locationsEdit = !state.locationsEdit;
+    toggleLocationsEditting(state) {
+      state.locations.isEditting = !state.locations.isEditting;
     },
     showLocationsEdit(state) {
-      state.locationsEdit = true;
+      state.locations.isEditting = true;
     },
     closeLocationsEdit(state) {
-      state.locationsEdit = false;
+      state.locations.isEditting = false;
     },
   },
 });
@@ -43,3 +45,7 @@ export const {
 } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;
+
+export const getShowSidebar = state => state.sidebar.showSidebar;
+
+// const getLocationsEditting = state => state.sidebar.

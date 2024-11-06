@@ -1,12 +1,11 @@
 import { FaLocationDot } from 'react-icons/fa6';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from '../../ui/Button';
 import LocationsItem from './LocationsItem';
-import { toggleLocationsEdit } from './sidebarSlice';
+import { toggleLocationsEdit } from '../sidebar/sidebarSlice';
 
 function Locations() {
   const dispatch = useDispatch();
-  const edit = useSelector(state => state.sidebar.locationsEdit);
 
   return (
     <div className='mt-2'>
@@ -22,7 +21,7 @@ function Locations() {
           Edit
         </Button>
       </div>
-      <LocationsItem edit={edit} />
+      <LocationsItem />
     </div>
   );
 }
