@@ -1,5 +1,9 @@
 import { useSelector } from 'react-redux';
-import { fetchWeather } from './weatherSlice';
+import {
+  fetchWeather,
+  getWeatherIsData,
+  getWeatherStatus,
+} from './weatherSlice';
 
 import Grid from '../../ui/Grid';
 import WeatherHeader from './WeatherHeader';
@@ -22,12 +26,11 @@ import { searchLocationById } from '../../services/apiGeocoding.js';
 import store from '../../store';
 
 function Weather() {
-  const status = useSelector(state => state.weather.status);
-  const isData = useSelector(state => state.weather.isData);
-
+  const status = useSelector(getWeatherStatus);
+  const isData = useSelector(getWeatherIsData);
   const isLoading = status === 'loading';
+  if (!isData) return null;
   if (isLoading) return <p>loading...</p>;
-  if (!isData) return <Loader />;
   return (
     <div className='flex flex-col items-center bg-neutral-800 px-1 semi-sm:px-2 sm:px-3'>
       <WeatherHeader />

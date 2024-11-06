@@ -35,6 +35,7 @@ const sidebarSlice = createSlice({
   },
 });
 
+// Slice exports
 export const {
   toggleSidebar,
   toggleLocationsEdit,
@@ -43,9 +44,7 @@ export const {
   closeLocationsEdit,
   closeSidebar,
 } = sidebarSlice.actions;
-
 export default sidebarSlice.reducer;
 
+// Selectors exports
 export const getShowSidebar = state => state.sidebar.showSidebar;
-
-// const getLocationsEditting = state => state.sidebar.

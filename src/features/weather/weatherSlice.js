@@ -64,18 +64,42 @@ const weatherSlice = createSlice({
 export default weatherSlice.reducer;
 
 // export const {} = weatherSlice.actions;
+export const getWeatherIsData = state => state.weather.isData;
+export const getWeatherStatus = state => state.weather.status;
 
-export const getCurrentWeather = state => state.weather.weatherData.current;
+export const getWeatherAlerts = state => state.weather.weatherData.alerts;
+export const getWeatherClouds = state => state.weather.weatherData.clouds;
+export const getWeatherDaily = state => state.weather.weatherData.daily;
+export const getWeatherLocation = state => state.weather.location;
+export const getWeatherTimeZone = state => state.weather.weatherData.timezone;
 
-export const getTemperature = state => state.weather.weatherData.current.temp;
+export const getWeatherCurr = state => state.weather.weatherData.current;
+export const getWeatherCurrTemp = state =>
+  state.weather.weatherData.current.temp;
+export const getWeatherCurrFeels = state =>
+  state.weather.weatherData.current.feels_like;
+export const getWeatherCurrHumidity = state =>
+  state.weather.weatherData.current.humidity;
+export const getWeatherCurrDewPoint = state =>
+  state.weather.weatherData.current.dew_point;
+export const getWeatherCurrPressure = state =>
+  state.weather.weatherData.current.pressure;
+export const getWeatherCurrUvi = state => state.weather.weatherData.current.uvi;
+export const getWeatherCurrVisibility = state =>
+  state.weather.weatherData.current.visibility;
+
 export const getTodayPrediction = state => state.weather.weatherData.daily[0];
-export const getDailyData = state => state.weather.weatherData.daily;
 export const getHourlyData = state => state.weather.weatherData.hourly;
 export const getPosition = state => state.weather.location.position;
 
-//! the need of implementing createSelector
+export const getTodayPredictionTemp = state =>
+  state.weather.weatherData.daily[0].temp;
+export const getTodayPredictionFeelsLike = state =>
+  state.weather.weatherData.daily[0].feels_like;
+export const getLocationName = state => state.weather.location.placeName;
+
 export const getHourlyPrediction = createSelector(
-  [getDailyData, getHourlyData],
+  [getWeatherDaily, getHourlyData],
   (daily, hourly) => {
     const hours = hourly.slice(0, 24);
     const firstHour = hours[0].dt;
@@ -93,11 +117,3 @@ export const getHourlyPrediction = createSelector(
     return arr;
   },
 );
-
-export const getTodayPredictionTemp = state =>
-  state.weather.weatherData.daily[0].temp;
-export const getTodayPredictionFeelsLike = state =>
-  state.weather.weatherData.daily[0].feels_like;
-export const getLocationName = state => state.weather.location.placeName;
-
-export const getWeatherLocation = state => state.weather.location;

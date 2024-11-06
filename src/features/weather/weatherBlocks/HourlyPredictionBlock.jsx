@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import HourlyPredictionBlockItem from './HourlyPredictionBlockItem.jsx';
 import WeatherBlock from './WeatherBlock.jsx';
-import { getHourlyPrediction } from '../weatherSlice.js';
+import { getHourlyPrediction, getWeatherTimeZone } from '../weatherSlice.js';
 import SideButtons from '../../../ui/SideButtons.jsx';
 import { useRef } from 'react';
 
 function HourlyPredictionBlock() {
   const hourlyPrediction = useSelector(getHourlyPrediction);
-  const timeZone = useSelector(state => state.weather.weatherData.timezone);
+  const timeZone = useSelector(getWeatherTimeZone);
   const ScrollContainerRef = useRef(null);
   const scrollValue = 200;
 

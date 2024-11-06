@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
 import WeatherBlock from './WeatherBlock';
-import { getTemperature } from '../weatherSlice';
+import { getWeatherCurrFeels, getWeatherCurrTemp } from '../weatherSlice';
 import { WiThermometer } from 'react-icons/wi';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 
 function FeelsLikeBlock() {
-  const temp = useSelector(getTemperature);
-  const feelsLike = useSelector(
-    state => state.weather.weatherData.current.feels_like,
-  );
-  if (!temp) return null;
+  const temp = useSelector(getWeatherCurrTemp);
+  const feelsLike = useSelector(getWeatherCurrFeels);
+  if (!temp || !feelsLike) return null;
 
   return (
     <WeatherBlock className='relative col-span-1 flex flex-col items-center text-neutral-300'>

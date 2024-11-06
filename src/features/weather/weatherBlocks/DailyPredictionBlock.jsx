@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import WeatherBlock from './WeatherBlock';
 import DailyPredictionBlockItem from './DailyPredictionBlockItem';
+import { getWeatherDaily } from '../weatherSlice';
 
 function DailyPredictionBlock() {
-  const dailyPredictions = useSelector(
-    state => state.weather.weatherData.daily,
-  );
+  const dailyPredictions = useSelector(getWeatherDaily);
+
+  if (!dailyPredictions) return null;
 
   const temperatureAmplitudePoints = dailyPredictions.reduce(
     (acc, curr) => {
@@ -17,8 +18,6 @@ function DailyPredictionBlock() {
     },
     { min: dailyPredictions[0].temp.min, max: dailyPredictions[0].temp.max },
   );
-
-  if (!dailyPredictions) return null;
 
   return (
     <WeatherBlock className='col-span-full row-span-4 semi-sm:col-span-3'>

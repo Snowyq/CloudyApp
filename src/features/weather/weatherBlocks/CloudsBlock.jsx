@@ -3,9 +3,11 @@ import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import WeatherBlock from './WeatherBlock';
 import { WiCloudy } from 'react-icons/wi';
 import ValueDisplay from '../../../ui/ValueDisplay';
+import { getWeatherClouds } from '../weatherSlice';
 
 function CloudsBlock() {
-  const clouds = useSelector(state => state.weather.weatherData.current.clouds);
+  const clouds = useSelector(getWeatherClouds);
+
   return (
     <WeatherBlock>
       <WeatherBlockHeader className='flex items-center'>
