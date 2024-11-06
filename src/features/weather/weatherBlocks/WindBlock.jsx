@@ -2,13 +2,13 @@ import { Wind } from '@phosphor-icons/react/dist/ssr';
 import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import WeatherBlock from './WeatherBlock';
 import { useSelector } from 'react-redux';
-import { getCurrentWeather } from '../weatherSlice';
+import { getWeatherCurr } from '../weatherSlice';
 import WindDirection from '../../../ui/WindDirection';
 
 import ValueDisplay from '../../../ui/ValueDisplay';
 
 function WindBlock() {
-  const currentWeatherData = useSelector(getCurrentWeather);
+  const currentWeatherData = useSelector(getWeatherCurr);
   const {
     wind_speed: windSpeed,
     wind_deg: windDeg,

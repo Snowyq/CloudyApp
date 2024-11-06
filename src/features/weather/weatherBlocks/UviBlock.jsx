@@ -5,9 +5,10 @@ import AbsoluteCenter from '../../../ui/AbsoluteCenter';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import UviBar from '../../../ui/UviBar';
 import { useEffect, useState } from 'react';
+import { getWeatherCurrUvi } from '../weatherSlice';
 
 function UviBlock() {
-  const uvi = useSelector(state => state.weather.weatherData.current.uvi);
+  const uvi = useSelector(getWeatherCurrUvi);
   const [uviMessage, setUviMessage] = useState('');
   const [dotColor, setDotColor] = useState('neutral-400');
 

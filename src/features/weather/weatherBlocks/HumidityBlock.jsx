@@ -4,14 +4,14 @@ import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { useSelector } from 'react-redux';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import AbsoluteCenter from '../../../ui/AbsoluteCenter';
+import {
+  getWeatherCurrDewPoint,
+  getWeatherCurrHumidity,
+} from '../weatherSlice';
 
 function HumidityBlock() {
-  const humidity = useSelector(
-    state => state.weather.weatherData.current.humidity,
-  );
-  const dewPoint = useSelector(
-    state => state.weather.weatherData.current.dew_point,
-  );
+  const humidity = useSelector(getWeatherCurrHumidity);
+  const dewPoint = useSelector(getWeatherCurrDewPoint);
 
   return (
     <WeatherBlock className='relative flex flex-col justify-between'>

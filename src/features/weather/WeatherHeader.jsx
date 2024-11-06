@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import {
-  getCurrentWeather,
+  getWeatherCurr,
   getLocationName,
   getTodayPredictionTemp,
 } from './weatherSlice';
@@ -8,7 +8,7 @@ import ValueDisplay from '../../ui/ValueDisplay';
 import WeatherIcon from '../../ui/WeatherIcon';
 
 function WeatherHeader() {
-  const currentWeather = useSelector(getCurrentWeather);
+  const currentWeather = useSelector(getWeatherCurr);
   const tempPrediciton = useSelector(getTodayPredictionTemp);
   const locationName = useSelector(getLocationName);
   if (!currentWeather) return null;

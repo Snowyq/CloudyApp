@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 import SearchLocation from '../features/search/SearchLocation';
 import ToggleSidebarBtn from '../features/sidebar/ToggleSidebarBtn';
+import { getShowSidebar } from '../features/sidebar/sidebarSlice';
 
 function Header() {
-  const showSidebar = useSelector(state => state.sidebar.showSidebar);
+  const showSidebar = useSelector(getShowSidebar);
 
   return (
     <header

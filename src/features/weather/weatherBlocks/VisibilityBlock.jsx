@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux';
 import { MdVisibility } from 'react-icons/md';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import AbsoluteCenter from '../../../ui/AbsoluteCenter';
+import { getWeatherCurrVisibility } from '../weatherSlice';
 
 function VisibilityBlock() {
-  const visibility = useSelector(
-    state => state.weather.weatherData.current.visibility,
-  );
+  const visibility = useSelector(getWeatherCurrVisibility);
   const visibilityInKm = visibility / 1000;
   return (
     <WeatherBlock>

@@ -4,7 +4,7 @@ import Button from '../../ui/Button';
 import { PiSidebar } from 'react-icons/pi';
 import { setLocationEditting } from '../locations/locationsSlice';
 
-function ToggleSidebarBtn({ type }) {
+function ToggleSidebarBtn() {
   const dispatch = useDispatch();
   const showSidebar = useSelector(getShowSidebar);
 

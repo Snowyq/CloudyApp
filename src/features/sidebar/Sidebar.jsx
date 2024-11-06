@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-
-import ToggleSidebarBtn from './ToggleSidebarBtn';
+import { getShowSidebar } from './sidebarSlice';
 
 import Locations from '../locations/Locations';
+import ToggleSidebarBtn from './ToggleSidebarBtn';
 
 function Sidebar() {
-  const showSidebar = useSelector(state => state.sidebar.showSidebar);
+  const showSidebar = useSelector(getShowSidebar);
 
   return (
     <div

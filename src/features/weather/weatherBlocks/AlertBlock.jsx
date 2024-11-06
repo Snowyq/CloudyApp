@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import WeatherBlockCarousel from '../../../ui/Carousel';
 import { GoAlertFill } from 'react-icons/go';
 import { FiAlertCircle } from 'react-icons/fi';
+import { getWeatherAlerts } from '../weatherSlice';
 
 function AlertBlock() {
-  const alerts = useSelector(state => state.weather.weatherData.alerts);
+  const alerts = useSelector(getWeatherAlerts);
 
   function showTime(time) {
     const dateOptions = { hour: 'numeric', minute: 'numeric' };
-
     return new Date(time * 1000).toLocaleTimeString('pl-PL', dateOptions);
   }
 

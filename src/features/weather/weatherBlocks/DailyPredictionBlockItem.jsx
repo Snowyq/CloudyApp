@@ -1,18 +1,19 @@
 import { useSelector } from 'react-redux';
 import ValueDisplay from '../../../ui/ValueDisplay';
 import WeatherIcon from '../../../ui/WeatherIcon';
+import { getWeatherCurrTemp } from '../weatherSlice';
 
 function DailyPredictionBlockItem({ item, index, width, minMaxTemp }) {
-  const currTemp = useSelector(state => state.weather.weatherData.current.temp);
+  const currTemp = useSelector(getWeatherCurrTemp);
 
   const iconId = item.weather[0].icon;
   const { min: globalMin, max: globalMax } = minMaxTemp;
   const globalMinMaxDistance = globalMax - globalMin;
   const procentPerUnit = 100 / globalMinMaxDistance;
   const min = item.temp.min;
+  const max = item.temp.max;
   const amplitudePositionLeft =
     distanceBetweenValues(globalMin, min) * procentPerUnit;
-  const max = item.temp.max;
   const amplitudeWidth = distanceBetweenValues(min, max) * procentPerUnit;
 
   const currTempPosition =
