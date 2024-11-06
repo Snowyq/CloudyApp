@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import ToggleSidebarBtn from './ToggleSidebarBtn';
 
-import Locations from './Locations';
+import Locations from '../locations/Locations';
 
 function Sidebar() {
   const showSidebar = useSelector(state => state.sidebar.showSidebar);
@@ -14,7 +14,6 @@ function Sidebar() {
       <div className='z-10 flex h-[50px] items-center px-3'>
         {showSidebar && <ToggleSidebarBtn />}
       </div>
-
       <Locations />
     </div>
   );

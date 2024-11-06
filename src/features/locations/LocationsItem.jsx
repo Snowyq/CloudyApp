@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
-import { removeSavedLocation } from '../weather/weatherSlice';
-import { closeSidebar } from './sidebarSlice';
+import { closeSidebar } from '../sidebar/sidebarSlice';
 import { useNavigate } from 'react-router-dom';
+import { getLocations, removeLocation } from './locationsSlice';
 
-function LocationsItem({ edit }) {
+function LocationsItem() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const savedLocations = useSelector(state => state.weather.savedLocations);
-  console.log(savedLocations);
+  const { savedLocations, isEditting } = useSelector(getLocations);
 
   function handleLocationDelete(e, id) {
     e.stopPropagation();
-    dispatch(removeSavedLocation(id));
+    dispatch(removeLocation(id));
   }
 
   function handleLocationClick(location) {
@@ -40,7 +39,7 @@ function LocationsItem({ edit }) {
                 </span>
               ) : null}
             </div>
-            {edit ? (
+            {isEditting ? (
               <Button
                 onClick={e => handleLocationDelete(e, location.id)}
                 className='text-sm text-red-500'

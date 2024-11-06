@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import sidebarReducer from './features/sidebar/sidebarSlice.js';
 import weatherReducer from './features/weather/weatherSlice.js';
 import searchReducer from './features/search/searchSlice.js';
+import locationsReducer from './features/locations/locationsSlice.js';
 
 // function loadStateFromStorage() {
 //   try {
@@ -35,13 +36,14 @@ const store = configureStore({
     sidebar: sidebarReducer,
     weather: weatherReducer,
     search: searchReducer,
+    locations: locationsReducer,
   },
   // preloadedState,
 });
 
 store.subscribe(() => {
   const state = store.getState();
-  const savedLocations = state.weather.savedLocations;
+  const savedLocations = state.locations.savedLocations;
   localStorage.setItem('savedLocations', JSON.stringify(savedLocations));
 });
 
