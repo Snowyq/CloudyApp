@@ -7,6 +7,8 @@ import {
   removeLocation,
 } from '../locations/locationsSlice';
 import { getWeatherLocation } from './weatherSlice';
+import toast from 'react-hot-toast';
+import { PiCheckCircleDuotone, PiXCircleDuotone } from 'react-icons/pi';
 
 function WeatherControlPanel() {
   const weatherLocation = useSelector(getWeatherLocation);
@@ -17,8 +19,19 @@ function WeatherControlPanel() {
   );
 
   function handleAddLocationBtn() {
-    if (isSavedLocation) dispatch(removeLocation(weatherLocation.id));
-    else dispatch(addLocation(weatherLocation));
+    if (isSavedLocation) {
+      dispatch(removeLocation(weatherLocation.id));
+      toast('Location removed!', {
+        duration: 2000,
+        icon: <PiXCircleDuotone />,
+      });
+    } else {
+      dispatch(addLocation(weatherLocation));
+      toast('Location added!', {
+        duration: 2000,
+        icon: <PiCheckCircleDuotone />,
+      });
+    }
   }
 
   return (

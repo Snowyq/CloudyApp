@@ -3,10 +3,12 @@ import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import WeatherBlock from './WeatherBlock';
 import { WiCloudy } from 'react-icons/wi';
 import ValueDisplay from '../../../ui/ValueDisplay';
-import { getWeatherClouds } from '../weatherSlice';
+import { getWeatherCurrClouds } from '../weatherSlice';
 
 function CloudsBlock() {
-  const clouds = useSelector(getWeatherClouds);
+  const clouds = useSelector(getWeatherCurrClouds);
+  console.log(clouds);
+  if (!clouds) return null;
 
   return (
     <WeatherBlock>

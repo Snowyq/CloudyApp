@@ -3,28 +3,29 @@ import HourlyPredictionBlockItem from './HourlyPredictionBlockItem.jsx';
 import WeatherBlock from './WeatherBlock.jsx';
 import { getHourlyPrediction, getWeatherTimeZone } from '../weatherSlice.js';
 import SideButtons from '../../../ui/SideButtons.jsx';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import Swipe from '../../../ui/Swipe';
 
 function HourlyPredictionBlock() {
   const hourlyPrediction = useSelector(getHourlyPrediction);
   const timeZone = useSelector(getWeatherTimeZone);
-  const ScrollContainerRef = useRef(null);
-  const scrollValue = 200;
 
-  function scrollLeft() {
-    if (ScrollContainerRef.current)
-      ScrollContainerRef.current.scrollBy({
-        left: -scrollValue,
-        behavior: 'smooth',
-      });
-  }
-  function scrollRight() {
-    if (ScrollContainerRef.current)
-      ScrollContainerRef.current.scrollBy({
-        left: scrollValue,
-        behavior: 'smooth',
-      });
-  }
+  // const scrollValue = 200;
+
+  // function scrollLeft() {
+  //   if (ScrollContainerRef.current)
+  //     ScrollContainerRef.current.scrollBy({
+  //       left: -scrollValue,
+  //       behavior: 'smooth',
+  //     });
+  // }
+  // function scrollRight() {
+  //   if (ScrollContainerRef.current)
+  //     ScrollContainerRef.current.scrollBy({
+  //       left: scrollValue,
+  //       behavior: 'smooth',
+  //     });
+  // }
 
   if (!hourlyPrediction) return;
   const displayedPrediction = hourlyPrediction;
@@ -32,24 +33,24 @@ function HourlyPredictionBlock() {
   return (
     <WeatherBlock className='relative col-span-full flex'>
       <SideButtons
-        onLeftArrowClick={scrollLeft}
-        onRightArrowClick={scrollRight}
+      // onLeftArrowClick={scrollLeft}
+      // onRightArrowClick={scrollRight}
       />
-      <div
-        className='no-scrollbar mx-4 flex h-full gap-3 overflow-x-scroll sm:gap-4'
-        ref={ScrollContainerRef}
-      >
-        {displayedPrediction.map((item, index) => {
-          return (
-            <HourlyPredictionBlockItem
-              timeZone={timeZone}
-              index={index}
-              item={item}
-              key={index}
-            />
-          );
-        })}
-      </div>
+
+      <Swipe>
+        <div className='mx-4 flex h-full w-fit gap-3 sm:gap-4'>
+          {displayedPrediction.map((item, index) => {
+            return (
+              <HourlyPredictionBlockItem
+                timeZone={timeZone}
+                index={index}
+                item={item}
+                key={index}
+              />
+            );
+          })}
+        </div>
+      </Swipe>
     </WeatherBlock>
   );
 }
