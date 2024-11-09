@@ -68,11 +68,12 @@ export const getWeatherIsData = state => state.weather.isData;
 export const getWeatherStatus = state => state.weather.status;
 
 export const getWeatherAlerts = state => state.weather.weatherData.alerts;
-export const getWeatherClouds = state => state.weather.weatherData.clouds;
 export const getWeatherDaily = state => state.weather.weatherData.daily;
 export const getWeatherLocation = state => state.weather.location;
 export const getWeatherTimeZone = state => state.weather.weatherData.timezone;
 
+export const getWeatherCurrClouds = state =>
+  state.weather.weatherData.current.clouds;
 export const getWeatherCurr = state => state.weather.weatherData.current;
 export const getWeatherCurrTemp = state =>
   state.weather.weatherData.current.temp;

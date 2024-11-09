@@ -5,6 +5,7 @@ import Main from './Main';
 import AppContainer from './AppContainer';
 import { useDispatch } from 'react-redux';
 import { closeSidebar } from '../features/sidebar/sidebarSlice';
+import { Toaster } from 'react-hot-toast';
 
 function AppLayout() {
   const dispatch = useDispatch();
@@ -20,6 +21,14 @@ function AppLayout() {
         style={{ scrollbarColor: '#737373 #262626' }}
       >
         <Sidebar />
+        <Toaster
+          position='bottom-center'
+          toastOptions={{
+            style: {
+              // backgroundColor: '#737373',
+            },
+          }}
+        />
         <AppContainer onClick={handleClickOutsideSidebar}>
           <Header />
           <Main>

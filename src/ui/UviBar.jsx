@@ -27,7 +27,6 @@ function UviBar({
             marginLeft: `calc(${dotSize} / 2)`,
           }}
         >
-          {/* progress dot */}
           <div
             className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-200 shadow-sm shadow-black`}
             style={{
@@ -41,8 +40,7 @@ function UviBar({
             />
           </div>
         </div>
-        {/* scale colors */}
-        <div className='bg-uvi -z-10 h-full w-full rounded-md'></div>
+        <div className='-z-10 h-full w-full rounded-md bg-uvi'></div>
       </div>
     </div>
   );
