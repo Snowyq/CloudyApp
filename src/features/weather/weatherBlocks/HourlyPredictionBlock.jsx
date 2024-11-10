@@ -10,23 +10,6 @@ function HourlyPredictionBlock() {
   const hourlyPrediction = useSelector(getHourlyPrediction);
   const timeZone = useSelector(getWeatherTimeZone);
 
-  // const scrollValue = 200;
-
-  // function scrollLeft() {
-  //   if (ScrollContainerRef.current)
-  //     ScrollContainerRef.current.scrollBy({
-  //       left: -scrollValue,
-  //       behavior: 'smooth',
-  //     });
-  // }
-  // function scrollRight() {
-  //   if (ScrollContainerRef.current)
-  //     ScrollContainerRef.current.scrollBy({
-  //       left: scrollValue,
-  //       behavior: 'smooth',
-  //     });
-  // }
-
   if (!hourlyPrediction) return;
   const displayedPrediction = hourlyPrediction;
 
