@@ -6,6 +6,8 @@ function useTouchable({ onStart, onMove, onEnd, init, customParams, ref }) {
     tempEndY: null,
     deltaX: null,
     deltaY: null,
+    minMoveVal: 40,
+    direction: null,
     customParams,
   };
 
@@ -26,11 +28,25 @@ function useTouchable({ onStart, onMove, onEnd, init, customParams, ref }) {
     params.tempEndY = event.targetTouches[0].clientY;
     params.deltaX = params.tempEndX - params.tempStartX;
     params.deltaY = params.tempEndY - params.tempStartY;
-    onMove?.fn?.(params, event);
+    params.direction = detectMoveDirections();
+    if (params.deltaX > params.minMoveVal) onMove?.fn?.(params, event);
   }
 
   function handleTouchEnd(event) {
     onEnd?.fn?.(params, event);
+  }
+
+  function detectMoveDirections() {
+    const { deltaX, deltaY, minMoveVal } = params;
+
+    if (Math.abs(deltaX) < minMoveVal && Math.abs(deltaY) < minMoveVal) return;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 0) params.direction = 'RIGHT';
+      if (deltaX < 0) params.direction = 'LEFT';
+    }
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    }
   }
 
   function addListeners() {
