@@ -7,20 +7,23 @@ import { useRef, useState } from 'react';
 import Swipe from '../../../ui/Swipe';
 
 function HourlyPredictionBlock() {
-  const hourlyPrediction = useSelector(getHourlyPrediction);
+  const displayedPrediction = useSelector(getHourlyPrediction);
   const timeZone = useSelector(getWeatherTimeZone);
+  const [translate, setTranslate] = useState(0);
 
-  if (!hourlyPrediction) return;
-  const displayedPrediction = hourlyPrediction;
+  const scrollLeft = () => setTranslate(translate => translate + 100);
+  const scrollRight = () => setTranslate(translate => translate - 100);
+  console.log(translate);
 
+  if (!displayedPrediction) return;
   return (
     <WeatherBlock className='relative col-span-full flex'>
       <SideButtons
-      // onLeftArrowClick={scrollLeft}
-      // onRightArrowClick={scrollRight}
+        onLeftArrowClick={scrollLeft}
+        onRightArrowClick={scrollRight}
       />
 
-      <Swipe>
+      <Swipe outsideTranslate={translate} setOutsideTranslate={setTranslate}>
         <div className='mx-4 flex h-full w-fit gap-3 sm:gap-4'>
           {displayedPrediction.map((item, index) => {
             return (
