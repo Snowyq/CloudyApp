@@ -8,14 +8,11 @@ import { useNavigate } from 'react-router-dom';
 function SearchLocation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const inputRef = useRef(null);
-
   const { results, showResults } = useSelector(state => state.search);
-
   const [query, setQuery] = useState('');
-
   const isResults = results && showResults;
+
   useEffect(() => {
     if (query.length >= 3) {
       dispatch(fetchResults(query));
@@ -26,22 +23,8 @@ function SearchLocation() {
 
   function handleSearchSubmit(e) {
     e.preventDefault();
-
     if (!results) return;
-    // const [locationType, locationId] = results[0].id.split('.');
-    // console.log(locationType, locationId);
-    // navigate(`app/weather/current/${locationType}/${locationId}`);
     navigate(`app/weather/current/${results[0].id}`);
-    // dispatch(
-    //   fetchWeather({
-    //     position: {
-    //       lon: results[0].center[0],
-    //       lat: results[0].center[1],
-    //     },
-    //     placeName: results[0].place_name,
-    //     id: results[0].id,
-    //   }),
-    // );
     dispatch(hideResults());
     setQuery('');
     if (inputRef.current) inputRef.current.blur();

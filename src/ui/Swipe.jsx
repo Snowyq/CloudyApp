@@ -1,17 +1,39 @@
 import { useState, useRef, useEffect } from 'react';
 import useTouchable from '../utils/useTouchable';
 
-function Swipe({ children }) {
+function Swipe({ children, outsideTranslate, setOutsideTranslate }) {
   const swipeRef = useRef(null);
   const swipeInnerRef = useRef(null);
   const childRef = useRef(null);
 
   const [maxTranslate, setMaxTranslate] = useState(0);
-  const [translated, setTranslated] = useState(0);
+  const [translated, setTranslated] = useState(outsideTranslate);
+
+  useEffect(() => {
+    if (!outsideTranslate || !setOutsideTranslate) return;
+    swipeInnerRef.current.style.transition = 'all 0.3s';
+    if (outsideTranslate < maxTranslate) {
+      swipeInnerRef.current.style.transform = `translateX(${maxTranslate}px)`;
+      setOutsideTranslate(maxTranslate);
+    } else if (outsideTranslate > 0) {
+      swipeInnerRef.current.style.transform = `translateX(${0}px)`;
+      setOutsideTranslate(0);
+    } else {
+      swipeInnerRef.current.style.transform = `translateX(${outsideTranslate}px)`;
+    }
+
+    setTranslated(outsideTranslate);
+  });
+
   const { addListeners } = useTouchable({
     ref: swipeRef,
     customParams: {
       tempTranslate: null,
+    },
+    onStart: {
+      fn: () => {
+        swipeInnerRef.current.style.transition = 'none';
+      },
     },
     onMove: {
       fn: (params, event) => {
@@ -40,7 +62,9 @@ function Swipe({ children }) {
     },
     onEnd: {
       fn: params => {
-        setTranslated(params.customParams.tempTranslate);
+        const newTranslate = params.customParams.tempTranslate;
+        if (setOutsideTranslate) setOutsideTranslate(newTranslate);
+        setTranslated(newTranslate);
       },
     },
   });
