@@ -15,5 +15,3 @@ function SearchResults() {
 }
 
 export default SearchResults;
-
-// absolute -z-10 rounded-2xl bg-neutral-700 px-4 pt-10

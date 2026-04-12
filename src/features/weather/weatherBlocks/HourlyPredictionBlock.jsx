@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import SideButtons from '../../../ui/SideButtons.jsx';
+import Swipe from '../../../ui/Swipe';
+import { getHourlyPrediction, getWeatherTimeZone } from '../weatherSlice.js';
 import HourlyPredictionBlockItem from './HourlyPredictionBlockItem.jsx';
 import WeatherBlock from './WeatherBlock.jsx';
-import { getHourlyPrediction, getWeatherTimeZone } from '../weatherSlice.js';
-import SideButtons from '../../../ui/SideButtons.jsx';
-import { useRef, useState } from 'react';
-import Swipe from '../../../ui/Swipe';
 
 function HourlyPredictionBlock() {
   const displayedPrediction = useSelector(getHourlyPrediction);
@@ -13,9 +13,7 @@ function HourlyPredictionBlock() {
 
   const scrollLeft = () => setTranslate(translate => translate + 100);
   const scrollRight = () => setTranslate(translate => translate - 100);
-  console.log(translate);
-
-  if (!displayedPrediction) return;
+  if (!displayedPrediction) return null;
   return (
     <WeatherBlock className='relative col-span-full flex'>
       <SideButtons

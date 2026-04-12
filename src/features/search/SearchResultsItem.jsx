@@ -1,49 +1,28 @@
-import { removeDiacritics } from '../../utils/helpers';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { removeDiacritics } from '../../utils/helpers';
 
 function SearchResultsItem({ result }) {
   const navigate = useNavigate();
   const query = useSelector(state => state.search.query);
 
-  // breaking place_name to make better UI
   const [name, ...nameRest] = result.place_name.split(',');
-
-  // finding query string in name string to distinguish query given by user
-
-  // removing local special characters to make comparing more user friendly
   const normalizedQuery = removeDiacritics(query);
   const normalizedName = removeDiacritics(name);
-  // finding position of query in name
   const indexOfMatch = normalizedName
     .toLowerCase()
     .indexOf(normalizedQuery.toLowerCase());
-  //getting match string (it cant be query because it is desired to keep corectly written name)
-
   const match =
     indexOfMatch >= 0
       ? name.slice(indexOfMatch, indexOfMatch + query.length)
       : '';
-  // spliting name end removing match from place wherever it is
   const [firstNamePart, secondNamePart] = name.replace(match, ',').split(',');
 
   return (
     <div
       className='mx-1 cursor-pointer rounded py-2 pl-4 text-lg text-neutral-200 hover:bg-neutral-800'
       onMouseDown={() => {
-        console.log(result);
         navigate(`app/weather/current/${result.id}`);
-        // dispatch(
-        //   fetchWeather({
-        //     position: {
-        //       lon: result.center[0],
-        //       lat: result.center[1],
-        //     },
-        //     placeName: result.place_name,
-        //     id: result.id,
-        //   }),
-        // );
-        // dispatch(hideResults());
       }}
     >
       <span>{firstNamePart}</span>

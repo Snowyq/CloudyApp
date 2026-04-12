@@ -20,7 +20,6 @@ export function calculatePointsOnCircle({
   if (initialDeg) currDeg = initialDeg;
   let points = [];
   for (let i = 0; i < pointsNum; i++) {
-    // if (currDeg > 360) return;
     const sin = Math.sin((currDeg * Math.PI) / 180);
     const cos = Math.cos((currDeg * Math.PI) / 180);
     const mathY = cos * radius;

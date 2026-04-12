@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { PiMagnifyingGlass } from 'react-icons/pi';
-import SearchResults from './SearchResults';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchResults, hideResults } from './searchSlice';
 import { useNavigate } from 'react-router-dom';
+import SearchResults from './SearchResults';
+import { fetchResults, hideResults } from './searchSlice';
 
 function SearchLocation() {
   const dispatch = useDispatch();
@@ -52,7 +52,6 @@ function SearchLocation() {
           placeholder='search location'
         />
       </form>
-      {/* {isLoading && <SearchLoading />} */}
       {isResults && <SearchResults />}
     </div>
   );

@@ -1,18 +1,11 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-// import { WEATHER_API_KEY } from './config';
+import Weather, { loader as weatherLoader } from './features/weather/Weather';
 import AppLayout from './ui/AppLayout';
 import AppStart from './ui/AppStart';
-import Weather, { loader as weatherLoader } from './features/weather/Weather';
 
 const router = createBrowserRouter([
-  // {
-  //   path: '',
-  //   // element: <Home />,
-  // },
   {
     element: <AppLayout />,
-    // errorElement: <Error />,
-
     children: [
       {
         path: '/',
@@ -32,16 +25,3 @@ function App() {
 }
 
 export default App;
-
-// useEffect(function () {
-// async function load() {
-//   const { latitude, longitude } = await fetchPosition();
-//   console.log(latitude, longitude);
-
-//   const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`;
-//   const res = await fetch(URL);
-//   const data = await res.json();
-//   console.log(data);
-// }
-// load();
-// }, []);
