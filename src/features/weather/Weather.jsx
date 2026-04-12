@@ -8,18 +8,17 @@ import {
 import Grid from '../../ui/Grid';
 import WeatherHeader from './WeatherHeader';
 
-import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
-import PressureBlock from './weatherBlocks/PressureBlock';
-import HourlyPredictionBlock from './weatherBlocks/HourlyPredictionBlock';
-import Loader from '../../ui/Loader';
-import WindBlock from './weatherBlocks/WindBlock';
-import HumidityBlock from './weatherBlocks/HumidityBlock';
-import CloudsBlock from './weatherBlocks/CloudsBlock';
-import VisibilityBlock from './weatherBlocks/VisibilityBlock';
-import MapBlock from './weatherBlocks/MapBlock';
-import UviBlock from './weatherBlocks/UviBlock';
 import AlertBlock from './weatherBlocks/AlertBlock';
+import CloudsBlock from './weatherBlocks/CloudsBlock';
 import DailyPredictionBlock from './weatherBlocks/DailyPredictionBlock';
+import FeelsLikeBlock from './weatherBlocks/FeelsLikeBlock';
+import HourlyPredictionBlock from './weatherBlocks/HourlyPredictionBlock';
+import HumidityBlock from './weatherBlocks/HumidityBlock';
+import MapBlock from './weatherBlocks/MapBlock';
+import PressureBlock from './weatherBlocks/PressureBlock';
+import UviBlock from './weatherBlocks/UviBlock';
+import VisibilityBlock from './weatherBlocks/VisibilityBlock';
+import WindBlock from './weatherBlocks/WindBlock';
 import WeatherControlPanel from './WeatherControlPanel';
 
 import { searchLocationById } from '../../services/apiGeocoding.js';
@@ -53,10 +52,7 @@ function Weather() {
 }
 
 export async function loader({ params }) {
-  console.log(params);
-  console.log(params.locationId);
   const location = await searchLocationById(params.locationId);
-  console.log(location);
 
   store.dispatch(
     fetchWeather({

@@ -1,25 +1,14 @@
 import {
-  createAsyncThunk,
-  createSelector,
-  createSlice,
+    createAsyncThunk,
+    createSelector,
+    createSlice,
 } from '@reduxjs/toolkit';
 import { getWeather } from '../../services/apiWeather';
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
   async function ({ position, placeName, id, saved }) {
-    console.log(placeName, id, saved);
-    // const position = { lon, lat };
-    // 1) We get the user's geolocation position
-    // const positionObj = await getPosition();
-    // const position = {
-    //   latitude: positionObj.coords.latitude,
-    //   longitude: positionObj.coords.longitude,
-    // };
-    // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
     const weatherData = await getWeather(position);
-    // const weatherMap = await getWeatherMap(position, 'precipitation_new', 6);
-    // 3) Then we return an object with the data that we are interested in
     return { position, weatherData, placeName, id, saved };
   },
 );
@@ -62,8 +51,6 @@ const weatherSlice = createSlice({
 });
 
 export default weatherSlice.reducer;
-
-// export const {} = weatherSlice.actions;
 export const getWeatherIsData = state => state.weather.isData;
 export const getWeatherStatus = state => state.weather.status;
 

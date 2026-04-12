@@ -1,11 +1,11 @@
+import { Toaster } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../features/sidebar/Sidebar';
+import { closeSidebar } from '../features/sidebar/sidebarSlice';
+import AppContainer from './AppContainer';
 import Header from './Header';
 import Main from './Main';
-import AppContainer from './AppContainer';
-import { useDispatch } from 'react-redux';
-import { closeSidebar } from '../features/sidebar/sidebarSlice';
-import { Toaster } from 'react-hot-toast';
 
 function AppLayout() {
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ function AppLayout() {
           position='bottom-center'
           toastOptions={{
             style: {
-              // backgroundColor: '#737373',
             },
           }}
         />
@@ -41,21 +40,3 @@ function AppLayout() {
 }
 
 export default AppLayout;
-
-// function AppLayout() {
-//   return (
-//     <div className='relative mx-auto grid h-svh max-w-screen-2xl grid-rows-[100px_1fr] bg-zinc-800 text-slate-500'>
-//       <Header />
-
-//       <div className='mx-auto h-full w-full md:grid md:grid-cols-[minmax(300px,400px)_auto]'>
-//         <Sidebar />
-
-//         <Main>
-//           <Outlet />
-//         </Main>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default AppLayout;

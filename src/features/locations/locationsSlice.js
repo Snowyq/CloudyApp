@@ -5,10 +5,8 @@ function loadStateFromStorage() {
     const savedLocations = localStorage.getItem('savedLocations');
     if (!savedLocations) return [];
 
-    console.log(JSON.parse(savedLocations));
     return JSON.parse(savedLocations);
   } catch (err) {
-    // throw new Error('Could not load savedLocations');
     return [];
   }
 }
@@ -23,7 +21,6 @@ const locationsSlice = createSlice({
   initialState,
   reducers: {
     addLocation(state, action) {
-      console.log(action.payload);
       const isAdded = state.savedLocations.find(
         location => location.id === action.payload.id,
       );

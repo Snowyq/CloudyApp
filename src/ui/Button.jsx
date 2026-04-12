@@ -1,5 +1,4 @@
 const buttonStyles = {
-  // styles must be created based on 'em' value because of modular and responsive design of button
   default: '',
 };
 

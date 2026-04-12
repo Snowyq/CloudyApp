@@ -1,13 +1,12 @@
-import { useSelector } from 'react-redux';
-import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
-import WeatherBlock from './WeatherBlock';
 import { WiCloudy } from 'react-icons/wi';
+import { useSelector } from 'react-redux';
 import ValueDisplay from '../../../ui/ValueDisplay';
+import WeatherBlockHeader from '../../../ui/WeatherBlockHeader';
 import { getWeatherCurrClouds } from '../weatherSlice';
+import WeatherBlock from './WeatherBlock';
 
 function CloudsBlock() {
   const clouds = useSelector(getWeatherCurrClouds);
-  console.log(clouds);
   if (!clouds) return null;
 
   return (

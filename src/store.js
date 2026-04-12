@@ -1,35 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import locationsReducer from './features/locations/locationsSlice.js';
+import searchReducer from './features/search/searchSlice.js';
 import sidebarReducer from './features/sidebar/sidebarSlice.js';
 import weatherReducer from './features/weather/weatherSlice.js';
-import searchReducer from './features/search/searchSlice.js';
-import locationsReducer from './features/locations/locationsSlice.js';
-
-// function loadStateFromStorage() {
-//   try {
-//     const savedLocations = localStorage.getItem('savedLocations');
-//     if (!savedLocations) return undefined;
-//     return JSON.parse(savedLocations);
-//   } catch (err) {
-//     throw new Error('Could not load savedLocations');
-//   }
-// }
-// const preloadedState = {
-//   weather: {
-//     savedLocations: loadStateFromStorage() || [],
-//   },
-// };
-
-// const initialState = {
-//   dataTime: null,
-//   weatherData: {
-//     hourly: [],
-//     daily: [],
-//   },
-//   error: '',
-//   status: 'idle',
-//   isData: false,
-//   location: { placeName: '', position: {}, id: null },
-// };
 
 const store = configureStore({
   reducer: {
@@ -38,7 +11,6 @@ const store = configureStore({
     search: searchReducer,
     locations: locationsReducer,
   },
-  // preloadedState,
 });
 
 store.subscribe(() => {
