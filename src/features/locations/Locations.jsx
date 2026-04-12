@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { toggleLocationsEdit } from '../sidebar/sidebarSlice';
+import { toggleLocationEditting } from './locationsSlice';
 
 import { FaLocationDot } from 'react-icons/fa6';
 import Button from '../../ui/Button';
@@ -16,7 +16,7 @@ function Locations() {
           <p>Locations</p>
         </div>
         <Button
-          onClick={() => dispatch(toggleLocationsEdit())}
+          onClick={() => dispatch(toggleLocationEditting())}
           className={`px-2 py-1 text-neutral-400 hover:text-neutral-200`}
         >
           Edit

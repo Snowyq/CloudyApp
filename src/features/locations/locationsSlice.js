@@ -32,13 +32,21 @@ const locationsSlice = createSlice({
         location => location.id !== action.payload,
       );
     },
+    toggleLocationEditting(state) {
+      state.isEditting = !state.isEditting;
+    },
     setLocationEditting(state, action) {
       state.isEditting = action.payload;
     },
   },
 });
 
-export const { addLocation, removeLocation, setLocationEditting } =
+export const {
+  addLocation,
+  removeLocation,
+  toggleLocationEditting,
+  setLocationEditting,
+} =
   locationsSlice.actions;
 export default locationsSlice.reducer;
 

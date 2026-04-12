@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Weather, { loader as weatherLoader } from './features/weather/Weather';
+import Weather from './features/weather/Weather';
+import { loader as weatherLoader } from './features/weather/weatherLoader';
 import AppLayout from './ui/AppLayout';
 import AppStart from './ui/AppStart';
 
