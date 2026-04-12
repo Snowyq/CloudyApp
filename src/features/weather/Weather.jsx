@@ -1,9 +1,5 @@
 import { useSelector } from 'react-redux';
-import {
-  fetchWeather,
-  getWeatherIsData,
-  getWeatherStatus,
-} from './weatherSlice';
+import { getWeatherIsData, getWeatherStatus } from './weatherSlice';
 
 import Grid from '../../ui/Grid';
 import WeatherHeader from './WeatherHeader';
@@ -21,8 +17,6 @@ import VisibilityBlock from './weatherBlocks/VisibilityBlock';
 import WindBlock from './weatherBlocks/WindBlock';
 import WeatherControlPanel from './WeatherControlPanel';
 
-import { searchLocationById } from '../../services/apiGeocoding.js';
-import store from '../../store';
 
 function Weather() {
   const status = useSelector(getWeatherStatus);
@@ -49,22 +43,6 @@ function Weather() {
       </Grid>
     </div>
   );
-}
-
-export async function loader({ params }) {
-  const location = await searchLocationById(params.locationId);
-
-  store.dispatch(
-    fetchWeather({
-      position: {
-        lon: location.center[0],
-        lat: location.center[1],
-      },
-      placeName: location.place_name,
-      id: location.id,
-    }),
-  );
-  return null;
 }
 
 export default Weather;

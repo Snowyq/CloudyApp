@@ -31,12 +31,6 @@ const searchSlice = createSlice({
     hideResults(state) {
       state.showResults = false;
     },
-    showResults(state) {
-      state.showResults = true;
-    },
-    removeResults(state) {
-      state.results = null;
-    },
   },
   extraReducers: builder =>
     builder
@@ -58,6 +52,6 @@ const searchSlice = createSlice({
       }),
 });
 
-export const { showResults, hideResults, removeResults } = searchSlice.actions;
+export const { hideResults } = searchSlice.actions;
 
 export default searchSlice.reducer;

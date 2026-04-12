@@ -1,7 +1,7 @@
 import {
-    createAsyncThunk,
-    createSelector,
-    createSlice,
+  createAsyncThunk,
+  createSelector,
+  createSlice,
 } from '@reduxjs/toolkit';
 import { getWeather } from '../../services/apiWeather';
 
@@ -76,14 +76,11 @@ export const getWeatherCurrUvi = state => state.weather.weatherData.current.uvi;
 export const getWeatherCurrVisibility = state =>
   state.weather.weatherData.current.visibility;
 
-export const getTodayPrediction = state => state.weather.weatherData.daily[0];
 export const getHourlyData = state => state.weather.weatherData.hourly;
 export const getPosition = state => state.weather.location.position;
 
 export const getTodayPredictionTemp = state =>
   state.weather.weatherData.daily[0].temp;
-export const getTodayPredictionFeelsLike = state =>
-  state.weather.weatherData.daily[0].feels_like;
 export const getLocationName = state => state.weather.location.placeName;
 
 export const getHourlyPrediction = createSelector(

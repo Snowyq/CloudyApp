@@ -23,7 +23,7 @@ function Swipe({ children, outsideTranslate, setOutsideTranslate }) {
     }
 
     setTranslated(outsideTranslate);
-  });
+  }, [outsideTranslate, setOutsideTranslate, maxTranslate]);
 
   const { addListeners } = useTouchable({
     ref: swipeRef,

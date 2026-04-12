@@ -1,86 +1,85 @@
 # WeatherApp
 
-Aplikacja pogodowa w React (Vite), zrobiona jako projekt portfolio. Pokazuje praktyczna prace z API, zarzadzanie stanem w Redux Toolkit i modularna architekture front-endu z naciskiem na czytelne, responsywne UI.
+A weather app built with React and Vite. This is a portfolio project that focuses on real API work, solid Redux Toolkit state management, and a clean, responsive UI.
 
-## Cel projektu (portfolio)
+## Why this project
 
-- Integracja z zewnetrznymi API i obsluga asynchronicznych zapytan
-- Sprawna organizacja stanu aplikacji w Redux Toolkit
-- Czytelny podzial na feature modules i reusable UI
-- Routing z loaderem danych i przewidywalny przeplyw danych
-- Praca z mapa i warstwami pogodowymi
+- Real-world API integration with async data flow
+- Clear feature-based structure and reusable UI
+- Predictable routing with data loading
+- Interactive map with weather layers
 
-## Najwazniejsze funkcje
+## Key features
 
-- Wyszukiwanie lokalizacji z podpowiedziami (geocoding)
-- Widok pogody biezacej, godzinowej i dziennej + alerty
-- Zapisywanie ulubionych lokalizacji i ich edycja w sidebarze (localStorage)
-- Interaktywna mapa (Leaflet) z warstwami pogodowymi OpenWeather
-- Powiadomienia o akcjach uzytkownika (toasty)
-- Responsywny uklad z blokami pogodowymi
+- Location search with autocomplete (geocoding)
+- Current, hourly, and daily forecast + alerts
+- Favorite locations stored in localStorage
+- Interactive map (Leaflet) with OpenWeather layers
+- Toasts for user feedback
+- Responsive grid of weather blocks
 
-## Przeplyw danych end-to-end
+## End-to-end flow
 
-1) Uzytkownik wpisuje min. 3 znaki w wyszukiwarce
-2) `searchSlice` odpala `fetchResults` z `AbortController` i pobiera wyniki z MapTiler
-3) Wybor lokalizacji prowadzi do trasy `/app/weather/current/:locationId`
-4) Loader pobiera szczegoly lokalizacji po `id` i dispatchuje `fetchWeather`
-5) `weatherSlice` zapisuje dane z OpenWeather One Call, a UI renderuje bloki
+1) User types at least 3 characters in the search box
+2) `searchSlice` runs `fetchResults` with `AbortController` and queries MapTiler
+3) Selecting a location navigates to `/app/weather/current/:locationId`
+4) Route loader fetches location details and dispatches `fetchWeather`
+5) `weatherSlice` stores OpenWeather One Call data and UI renders blocks
 
-## Architektura i struktura
+## Structure
 
-- `src/features` - moduly funkcjonalne (weather, search, locations, sidebar)
-- `src/services` - klienci API (OpenWeather, MapTiler)
-- `src/ui` - komponenty wspolne i layout
-- `src/store.js` - konfiguracja Redux i zapis ulubionych do localStorage
+- `src/features` - feature modules (weather, search, locations, sidebar)
+- `src/services` - API clients (OpenWeather, MapTiler)
+- `src/ui` - shared UI and layout components
+- `src/store.js` - Redux setup and favorites persistence
 
-## Zarzadzanie stanem (Redux Toolkit)
+## State management (Redux Toolkit)
 
-- `createSlice` dla kazdego modułu
-- `createAsyncThunk` do pobierania danych
-- selektory i `reselect` do danych pochodnych (np. lista godzin + wschod/zachod)
-- zapis i odczyt ulubionych lokalizacji z localStorage
+- `createSlice` per feature
+- `createAsyncThunk` for async fetches
+- selectors and `reselect` for derived data
+- favorites saved and restored from localStorage
 
-## API i integracje
+## APIs and integrations
 
-- OpenWeather One Call API: biezaca, godzinowa i dzienna prognoza + alerty
-- OpenWeather Map Tiles: warstwy temperature, chmury, cisnienie, opady, wiatr
-- MapTiler Geocoding API: wyszukiwanie i lookup lokalizacji po id
-- React-Leaflet: mapa oraz interaktywne warstwy
+- OpenWeather One Call API: current, hourly, daily, alerts
+- OpenWeather Map Tiles: temperature, clouds, pressure, rain, wind
+- MapTiler Geocoding API: search and lookup by id
+- React-Leaflet: map and interactive layers
 
-## UX i interakcje
+## UX notes
 
-- Sidebar z lista lokalizacji i trybem edycji
-- Szybkie dodawanie/usuwanie lokalizacji z feedbackiem (toasty)
-- Klarowny podzial na bloki pogodowe w siatce
-- UI zbudowane pod mobile i desktop
+- Sidebar with saved locations and edit mode
+- Fast add/remove with toast feedback
+- Clear block layout for data density
+- Built for mobile and desktop
 
-## Konfiguracja srodowiska
+## Environment setup
 
-Wymagane zmienne srodowiskowe w pliku `.env`:
+Create a `.env` file with the following variables:
 
 ```
-VITE_WEATHER_API_KEY=twoj_klucz_openweather
-VITE_GEOLOCATION_API_KEY=twoj_klucz_maptiler
+VITE_WEATHER_API_KEY=your_openweather_key
+VITE_GEOLOCATION_API_KEY=your_maptiler_key
 ```
 
-## Uruchomienie lokalne
+## Local run
 
 ```
 npm install
 npm run dev
 ```
 
-## Skrypty
+## Scripts
 
-- `npm run dev` - lokalny serwer developerski
-- `npm run build` - build produkcyjny
-- `npm run preview` - podglad builda
+- `npm run dev` - local dev server
+- `npm run build` - production build
+- `npm run preview` - preview build
 - `npm run lint` - lint
 
-## Pomysly na dalszy rozwoj
+## Next ideas
 
-- Cache wynikow i ochrona przed limitami API
-- Dokladniejsze stany bledow i puste stany dla UI
-- Testy komponentow (RTL) i store (RTK)
-- Ujednolicenie kluczy API (np. mapy) w `.env`
+- Cache results to reduce API limits
+- More empty and error states in the UI
+- Component tests (RTL) and store tests (RTK)
+- Standardize API keys in `.env`
