@@ -23,6 +23,7 @@ function useTouchable({ onStart, onMove, onEnd, init, customParams, ref }) {
   }
 
   function handleTouchMove(event) {
+    
     onMove?.preFn?.(params, event);
     params.tempEndX = event.targetTouches[0].clientX;
     params.tempEndY = event.targetTouches[0].clientY;
@@ -45,8 +46,8 @@ function useTouchable({ onStart, onMove, onEnd, init, customParams, ref }) {
       if (deltaX > 0) params.direction = 'RIGHT';
       if (deltaX < 0) params.direction = 'LEFT';
     }
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    }
+    // if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // }
   }
 
   function addListeners() {
