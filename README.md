@@ -1,85 +1,49 @@
 # WeatherApp
 
-A weather app built with React and Vite. This is a portfolio project that focuses on real API work, solid Redux Toolkit state management, and a clean, responsive UI.
+Interactive weather dashboard focused on clarity and real-world data. React handles UI while Redux Toolkit manages state and async API flow.
 
-## Why this project
+## Live Demo
 
-- Real-world API integration with async data flow
-- Clear feature-based structure and reusable UI
-- Predictable routing with data loading
+TODO: add link
+
+## Features
+
+- Location search with geocoding autocomplete
+- Current, hourly, and daily forecast with alerts
+- Favorites persisted to localStorage
 - Interactive map with weather layers
+- Toast feedback and responsive layout
 
-## Key features
+## Tech Stack
 
-- Location search with autocomplete (geocoding)
-- Current, hourly, and daily forecast + alerts
-- Favorite locations stored in localStorage
-- Interactive map (Leaflet) with OpenWeather layers
-- Toasts for user feedback
-- Responsive grid of weather blocks
+- React 18, Vite, React Router
+- Redux Toolkit + Reselect
+- Tailwind CSS
+- React-Leaflet + MapTiler
+- OpenWeather APIs
 
-## End-to-end flow
+## Setup
 
-1) User types at least 3 characters in the search box
-2) `searchSlice` runs `fetchResults` with `AbortController` and queries MapTiler
-3) Selecting a location navigates to `/app/weather/current/:locationId`
-4) Route loader fetches location details and dispatches `fetchWeather`
-5) `weatherSlice` stores OpenWeather One Call data and UI renders blocks
-
-## Structure
-
-- `src/features` - feature modules (weather, search, locations, sidebar)
-- `src/services` - API clients (OpenWeather, MapTiler)
-- `src/ui` - shared UI and layout components
-- `src/store.js` - Redux setup and favorites persistence
-
-## State management (Redux Toolkit)
-
-- `createSlice` per feature
-- `createAsyncThunk` for async fetches
-- selectors and `reselect` for derived data
-- favorites saved and restored from localStorage
-
-## APIs and integrations
-
-- OpenWeather One Call API: current, hourly, daily, alerts
-- OpenWeather Map Tiles: temperature, clouds, pressure, rain, wind
-- MapTiler Geocoding API: search and lookup by id
-- React-Leaflet: map and interactive layers
-
-## UX notes
-
-- Sidebar with saved locations and edit mode
-- Fast add/remove with toast feedback
-- Clear block layout for data density
-- Built for mobile and desktop
-
-## Environment setup
-
-Create a `.env` file with the following variables:
+Create a `.env` file in the project root:
 
 ```
 VITE_WEATHER_API_KEY=your_openweather_key
 VITE_GEOLOCATION_API_KEY=your_maptiler_key
 ```
 
-## Local run
+Install and run:
 
 ```
 npm install
 npm run dev
 ```
 
-## Scripts
+## Notes
 
-- `npm run dev` - local dev server
-- `npm run build` - production build
-- `npm run preview` - preview build
-- `npm run lint` - lint
+- Search requests are abortable to avoid race conditions
+- Map layers include temperature, clouds, pressure, rain, and wind
+- UI is organized into reusable weather blocks for data density
 
-## Next ideas
+## License
 
-- Cache results to reduce API limits
-- More empty and error states in the UI
-- Component tests (RTL) and store tests (RTK)
-- Standardize API keys in `.env`
+MIT
