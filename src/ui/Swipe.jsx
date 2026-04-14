@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useTouchable from '../utils/useTouchable';
 
 function Swipe({ children, outsideTranslate, setOutsideTranslate }) {
@@ -80,7 +80,7 @@ function Swipe({ children, outsideTranslate, setOutsideTranslate }) {
   }, [children, childRef, swipeRef]);
 
   return (
-    <div ref={swipeRef} className='h-full w-full overflow-hidden'>
+    <div ref={swipeRef} className='h-full w-full select-none overflow-hidden'>
       <div ref={swipeInnerRef} className='h-full w-full'>
         <div ref={childRef} className='h-full w-fit'>
           {children}

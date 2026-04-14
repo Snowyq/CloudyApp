@@ -13,6 +13,7 @@ function SearchResultsItem({
   const [name, ...nameRest] = result.place_name.split(',');
   const normalizedQuery = removeDiacritics(query);
   const normalizedName = removeDiacritics(name);
+
   const indexOfMatch = normalizedName
     .toLowerCase()
     .indexOf(normalizedQuery.toLowerCase());

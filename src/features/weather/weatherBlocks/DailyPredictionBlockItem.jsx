@@ -15,6 +15,7 @@ function DailyPredictionBlockItem({ item, index, width, minMaxTemp }) {
   const amplitudePositionLeft =
     distanceBetweenValues(globalMin, min) * procentPerUnit;
   const amplitudeWidth = distanceBetweenValues(min, max) * procentPerUnit;
+  const popPercent = item.pop ? Math.round(item.pop * 100) : null;
 
   const currTempPosition =
     distanceBetweenValues(globalMin, currTemp) * procentPerUnit;
@@ -47,7 +48,7 @@ function DailyPredictionBlockItem({ item, index, width, minMaxTemp }) {
             className='text-xl semi-sm:text-2xl sm:text-3xl'
           />
           <p className='text-xs text-sky-600'>
-            {item.pop != 0 ? item.pop * 100 + '%' : ''}
+            {popPercent !== null ? `${popPercent}%` : ''}
           </p>
         </div>
         <div className='mr-0.5 flex w-[90%] items-center justify-end gap-0.5 text-sm semi-sm:mr-2 semi-sm:gap-2 semi-sm:text-base sm:text-lg'>
@@ -70,7 +71,9 @@ function DailyPredictionBlockItem({ item, index, width, minMaxTemp }) {
             {index === 0 ? (
               <div
                 className='absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-neutral-300 shadow-md'
-                style={{ left: `${currTempPosition}%` }}
+                style={{
+                  left: `clamp(0%, calc(${currTempPosition}% - 6px), calc(100% - 12px))`,
+                }}
               ></div>
             ) : null}
           </div>

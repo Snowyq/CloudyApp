@@ -16,6 +16,7 @@ function HourlyPredictionBlockItem({ item, timeZone, index }) {
     'pl-PL',
     timeOptions,
   );
+  const popPercent = item.pop ? Math.round(item.pop * 100) : null;
 
   if (isSunMovement)
     return (
@@ -32,10 +33,10 @@ function HourlyPredictionBlockItem({ item, timeZone, index }) {
       className={`flex h-full flex-col items-center justify-between py-2 text-sm sm:text-base`}
     >
       <p className=''>{index == 0 ? 'now' : time}</p>
-      <div>
+      <div className='flex flex-col items-center'>
         <WeatherIcon iconId={item.weather[0].icon} className={'text-4xl'} />
         <p className='text-sm text-sky-600'>
-          {item.pop != 0 ? item.pop * 100 + '%' : ''}
+          {popPercent !== null ? `${popPercent}%` : ''}
         </p>
       </div>
       <ValueDisplay value={item.temp} font='semibold' size='[1em]' />

@@ -15,7 +15,7 @@ function HourlyPredictionBlock() {
   const scrollRight = () => setTranslate(translate => translate - 100);
   if (!displayedPrediction) return null;
   return (
-    <WeatherBlock className='relative col-span-full flex'>
+    <WeatherBlock className='group relative col-span-full flex'>
       <SideButtons
         onLeftArrowClick={scrollLeft}
         onRightArrowClick={scrollRight}
